@@ -14,6 +14,7 @@ const {
 <!doctype html>
 <html lang="en">
   <head>
+    <script is:inline>document.documentElement.classList.add('js');</script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
@@ -31,7 +32,13 @@ const {
     <script>
       // ---- Scroll reveal (enhances already-visible content) ----
       const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      const revealEls = document.querySelectorAll<HTMLElement>('[data-reveal]');
+      const revealEls = document.querySelectorAll<HTMLElement>('[data-reveal], [data-stagger]');
+      // Index direct children of each stagger container for sequenced entrance.
+      document.querySelectorAll<HTMLElement>('[data-stagger]').forEach((group) => {
+        Array.from(group.children).forEach((child, i) => {
+          (child as HTMLElement).style.setProperty('--i', String(i));
+        });
+      });
       if (prefersReduced || !('IntersectionObserver' in window)) {
         revealEls.forEach((el) => el.classList.add('is-in'));
       } else {

@@ -33,7 +33,7 @@ const categories = [
 ];
 ---
 
-<section class="section array" id="array">
+<section class="section section--loose array" id="array">
   <div class="container">
     <div class="array__head">
       <div>
@@ -49,9 +49,9 @@ const categories = [
       </p>
     </div>
 
-    <ul class="array__list">
-      {categories.map((cat, i) => (
-        <li class="cat" data-reveal style={`--reveal-delay: ${0.04 * i}s`}>
+    <ul class="array__list" data-stagger>
+      {categories.map((cat) => (
+        <li class="cat">
           <span class="cat__n">{cat.n}</span>
           <h3 class="cat__name">{cat.name}</h3>
           <ul class="cat__markers">

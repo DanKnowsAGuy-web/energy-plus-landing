@@ -10,8 +10,8 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@fontsource-variable/figtree": "^5.1.0",
     "@fontsource-variable/sora": "^5.1.0",
+    "@fontsource-variable/source-sans-3": "^5.2.9",
     "astro": "^4.16.0"
   }
 }

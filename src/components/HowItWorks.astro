@@ -27,9 +27,9 @@ const steps = [
       </h2>
     </div>
 
-    <ol class="how__steps">
-      {steps.map((s, i) => (
-        <li class="step" data-reveal style={`--reveal-delay: ${0.1 * i}s`}>
+    <ol class="how__steps" data-stagger>
+      {steps.map((s) => (
+        <li class="step">
           <span class="step__n">{s.n}</span>
           <div class="step__line" aria-hidden="true"></div>
           <h3 class="step__title">{s.title}</h3>

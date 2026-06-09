@@ -8,11 +8,10 @@ const stats = [
 
 <section class="section" id="what">
   <div class="container narrow center">
-    <p class="eyebrow" data-reveal>What NutraCoreX™ is</p>
-    <h2 class="h" data-reveal style="--reveal-delay: 0.06s">
+    <h2 class="h" data-reveal>
       Comprehensive testing. Zero guesswork.
     </h2>
-    <p class="lede" data-reveal style="--reveal-delay: 0.12s">
+    <p class="lede" data-reveal style="--reveal-delay: 0.08s">
       NutraCoreX™ is an at-home lab array that pairs functional biomarkers with
       clinically relevant genetics, so you get actionable data about your own body.
       It reads your nutritional status, immune function, detoxification, cellular
@@ -21,7 +20,7 @@ const stats = [
   </div>
 
   <div class="container">
-    <div class="stats" data-reveal style="--reveal-delay: 0.18s">
+    <div class="stats" data-stagger>
       {stats.map((s) => (
         <div class="stat">
           <p class="stat__num">
@@ -36,7 +35,7 @@ const stats = [
 </section>
 
 <style>
-  .h { font-size: var(--step-3); margin: var(--sp-3) 0 var(--sp-4); }
+  .h { font-size: var(--step-3); margin: 0 0 var(--sp-4); }
   .stats {
     margin-top: var(--sp-7);
     display: grid; gap: var(--sp-3);

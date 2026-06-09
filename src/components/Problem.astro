@@ -18,23 +18,22 @@ const facts = [
 ];
 ---
 
-<section class="section problem">
+<section class="section section--tight problem">
   <div class="container narrow center">
-    <p class="eyebrow" data-reveal>The problem with other programs</p>
-    <h2 class="problem__title" data-reveal style="--reveal-delay: 0.06s">
+    <h2 class="problem__title" data-reveal>
       You have seen the ads promising to optimize your health from five genes
       and a supplement list.
     </h2>
-    <p class="lede" data-reveal style="--reveal-delay: 0.12s">
+    <p class="lede" data-reveal style="--reveal-delay: 0.08s">
       Real precision works differently. Three things separate guidance you can
       trust from a guess in a nicer box.
     </p>
   </div>
 
   <div class="container">
-    <div class="facts">
-      {facts.map((f, i) => (
-        <article class="fact" data-reveal style={`--reveal-delay: ${0.08 * i}s`}>
+    <div class="facts" data-stagger>
+      {facts.map((f) => (
+        <article class="fact">
           <p class="fact__n">{f.n}</p>
           <h3 class="fact__title">{f.title}</h3>
           <p class="prose fact__body">{f.body}</p>

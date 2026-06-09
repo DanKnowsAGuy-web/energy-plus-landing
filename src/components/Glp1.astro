@@ -26,9 +26,9 @@ const pillars = [
       </p>
     </div>
 
-    <ul class="glp1__pillars">
-      {pillars.map((p, i) => (
-        <li class="pillar" data-reveal style={`--reveal-delay: ${0.06 * i}s`}>
+    <ul class="glp1__pillars" data-stagger>
+      {pillars.map((p) => (
+        <li class="pillar">
           <div class="pillar__dot" aria-hidden="true"></div>
           <h3 class="pillar__title">{p.title}</h3>
           <p class="pillar__body">{p.body}</p>
