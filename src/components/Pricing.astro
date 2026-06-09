@@ -1,0 +1,92 @@
+---
+const includes = [
+  'NutraCoreX™ at-home collection kit',
+  'Prepaid kit submission label',
+  'Report summary',
+  'Results emailed directly to you',
+  'Full interpretation guide',
+  'Optional practitioner support, no pressure',
+  'No data storage. Your info is never sold',
+  'All from the comfort of home',
+];
+---
+
+<section class="section enroll" id="enroll">
+  <div class="container enroll__grid">
+    <div class="enroll__copy">
+      <p class="eyebrow" data-reveal>Start testing what actually matters</p>
+      <h2 class="enroll__title" data-reveal style="--reveal-delay: 0.06s">
+        Your symptoms don't have to define your life.
+      </h2>
+      <p class="prose" data-reveal style="--reveal-delay: 0.12s">
+        Optimizing your health stops being complicated when you know exactly how your
+        body operates. Balance Protocol™ GPS gives you a complete view of your current
+        biochemistry, the areas that need attention, and a roadmap to act on, including
+        how to get the most from GLP-1.
+      </p>
+      <p class="prose" data-reveal style="--reveal-delay: 0.16s">
+        If you're ready to take your health seriously, this is your next step.
+      </p>
+    </div>
+
+    <div class="card" data-reveal style="--reveal-delay: 0.1s">
+      <div class="card__glow" aria-hidden="true"></div>
+      <p class="card__name">Balance Protocol™ GPS</p>
+      <p class="card__price">
+        <span class="card__currency">$</span><span class="card__amount">998</span>
+        <span class="card__once">one-time</span>
+      </p>
+      <hr class="hr" style="margin-block: var(--sp-4)" />
+      <ul class="card__list">
+        {includes.map((item) => (
+          <li>
+            <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M4 10.5l4 4 8-9" />
+            </svg>
+            <span>{item}</span>
+          </li>
+        ))}
+      </ul>
+      <a href="#enroll" class="btn card__cta">Enroll now<span class="arrow" aria-hidden="true">→</span></a>
+      <p class="card__fine">Ships internationally. Results in ~10–14 business days after the lab receives your samples.</p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .enroll { background: linear-gradient(180deg, var(--ink) 0%, var(--ink-deep) 100%); }
+  .enroll__grid { display: grid; gap: var(--sp-6); }
+  @media (min-width: 880px) {
+    .enroll__grid { grid-template-columns: 1fr 1fr; gap: var(--sp-7); align-items: center; }
+  }
+  .enroll__title { font-size: var(--step-3); margin: var(--sp-3) 0 var(--sp-4); }
+
+  .card {
+    position: relative; isolation: isolate;
+    padding: var(--sp-6);
+    border-radius: calc(var(--radius) + 4px);
+    background: linear-gradient(180deg, var(--surface-2) 0%, var(--surface) 100%);
+    border: 1px solid oklch(82% 0.155 158 / 0.28);
+    box-shadow: 0 0 0 1px oklch(82% 0.155 158 / 0.08),
+                0 30px 80px -40px oklch(0% 0 0 / 0.8),
+                0 0 60px -30px var(--jade-glow);
+    overflow: hidden;
+  }
+  .card__glow {
+    position: absolute; inset: -40% 40% auto -10%; height: 60%; z-index: -1;
+    background: radial-gradient(closest-side, var(--jade-glow), transparent 70%);
+    filter: blur(20px); opacity: 0.5;
+  }
+  .card__name { font-family: var(--font-display); font-weight: 600; color: var(--muted); }
+  .card__price { display: flex; align-items: baseline; gap: 0.3rem; margin-top: var(--sp-2); }
+  .card__currency { font-family: var(--font-display); font-size: var(--step-2); color: var(--jade); font-weight: 600; }
+  .card__amount { font-family: var(--font-display); font-size: var(--step-5); font-weight: 600; line-height: 1; letter-spacing: -0.04em; }
+  .card__once { color: var(--muted-2); font-size: var(--step--1); margin-left: 0.4rem; }
+
+  .card__list { display: grid; gap: var(--sp-3); margin-bottom: var(--sp-5); }
+  .card__list li { display: grid; grid-template-columns: auto 1fr; gap: 0.75rem; align-items: start; }
+  .card__list svg { width: 20px; height: 20px; color: var(--jade); margin-top: 3px; flex: none; }
+
+  .card__cta { width: 100%; }
+  .card__fine { color: var(--muted-2); font-size: var(--step--1); margin-top: var(--sp-3); text-align: center; }
+</style>

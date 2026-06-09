@@ -1,0 +1,59 @@
+---
+const audience = [
+  'People tired of conflicting dietary advice and one-size-fits-all protocols',
+  'Anyone who wants data they can read and act on from home',
+  'Those working through fatigue, brain fog, or gut issues',
+];
+---
+
+<section class="section genes">
+  <div class="container genes__grid">
+    <div class="genes__copy">
+      <p class="eyebrow" data-reveal>Your genes guide us, they don't define you</p>
+      <h2 class="genes__title" data-reveal style="--reveal-delay: 0.06s">
+        DNA as a navigation tool, not a crystal ball.
+      </h2>
+      <p class="prose" data-reveal style="--reveal-delay: 0.12s">
+        We focus only on clinically relevant SNPs, the gene variations that actually
+        matter, and skip the noise. They show where your body might need extra support,
+        not what diseases you are destined to get.
+      </p>
+      <p class="prose" data-reveal style="--reveal-delay: 0.16s">
+        We use them to better understand your immune function, detox capacity, and
+        nutrient pathways, then fine-tune the rest of your Balance Protocol™ journey.
+      </p>
+    </div>
+
+    <aside class="genes__who panel" data-reveal style="--reveal-delay: 0.1s">
+      <h3 class="genes__whoTitle">Who it's for</h3>
+      <ul class="genes__list">
+        {audience.map((a) => (
+          <li>
+            <svg class="genes__check" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M4 10.5l4 4 8-9" />
+            </svg>
+            <span>{a}</span>
+          </li>
+        ))}
+      </ul>
+    </aside>
+  </div>
+</section>
+
+<style>
+  .genes__grid { display: grid; gap: var(--sp-6); }
+  @media (min-width: 880px) {
+    .genes__grid { grid-template-columns: 1.2fr 0.8fr; gap: var(--sp-7); align-items: center; }
+  }
+  .genes__title { font-size: var(--step-3); margin: var(--sp-3) 0 var(--sp-4); }
+
+  .genes__who { padding: var(--sp-5); }
+  .genes__whoTitle { font-size: var(--step-1); margin-bottom: var(--sp-4); }
+  .genes__list { display: grid; gap: var(--sp-3); }
+  .genes__list li { display: grid; grid-template-columns: auto 1fr; gap: 0.85rem; align-items: start; color: var(--muted); }
+  .genes__check {
+    width: 22px; height: 22px; color: var(--jade); margin-top: 2px;
+    padding: 2px; border-radius: 50%;
+    background: oklch(82% 0.155 158 / 0.12);
+  }
+</style>

@@ -1,0 +1,77 @@
+---
+const items = [
+  {
+    title: 'Identify functional imbalances',
+    body: 'See real-time imbalances in your biochemistry, and exactly where to correct them.',
+    icon: 'balance',
+  },
+  {
+    title: 'Identify crucial gene variations',
+    body: 'Understand how your unique genetics influence the biochemical pathways that shape how you feel.',
+    icon: 'dna',
+  },
+  {
+    title: 'Expert clinical analysis',
+    body: 'Backed by decades of clinical research, your results come as a complete, readable report of how your body operates.',
+    icon: 'report',
+  },
+];
+---
+
+<section class="section">
+  <div class="container">
+    <div class="center" style="max-width: 46rem; margin-inline: auto;">
+      <p class="eyebrow" data-reveal style="justify-content:center">A true precision test</p>
+      <h2 class="prec__title" data-reveal style="--reveal-delay: 0.06s">
+        Biomarkers and genetics, read together.
+      </h2>
+    </div>
+
+    <div class="prec">
+      {items.map((it, i) => (
+        <article class="prec__card panel" data-reveal style={`--reveal-delay: ${0.08 * i}s`}>
+          <span class="prec__icon" aria-hidden="true">
+            {it.icon === 'balance' && (
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 3v18M5 7h14M5 7l-2.5 6a3 3 0 0 0 5 0L5 7zM19 7l-2.5 6a3 3 0 0 0 5 0L19 7zM8 21h8" />
+              </svg>
+            )}
+            {it.icon === 'dna' && (
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M7 3c0 6 10 6 10 12M17 3c0 6-10 6-10 12M7 3h10M7 21h10M8 7h8M8 17h8" />
+              </svg>
+            )}
+            {it.icon === 'report' && (
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M6 2h8l4 4v16H6zM14 2v4h4M9 13l2 2 4-4" />
+              </svg>
+            )}
+          </span>
+          <h3 class="prec__h">{it.title}</h3>
+          <p class="prec__b">{it.body}</p>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .prec__title { font-size: var(--step-3); margin-top: var(--sp-3); }
+  .prec {
+    margin-top: var(--sp-7);
+    display: grid; gap: var(--sp-4);
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  }
+  .prec__card { padding: var(--sp-5); }
+  .prec__icon {
+    display: inline-grid; place-items: center;
+    width: 48px; height: 48px; border-radius: 13px;
+    color: var(--jade);
+    background: oklch(82% 0.155 158 / 0.1);
+    border: 1px solid oklch(82% 0.155 158 / 0.22);
+    margin-bottom: var(--sp-4);
+  }
+  .prec__icon svg { width: 24px; height: 24px; }
+  .prec__h { font-size: var(--step-1); margin-bottom: var(--sp-2); }
+  .prec__b { color: var(--muted); }
+</style>

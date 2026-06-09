@@ -1,0 +1,183 @@
+@import '@fontsource-variable/sora';
+@import '@fontsource-variable/figtree';
+
+/* ============================================================
+   Balance Protocol GPS — The Midnight Wellness Lab
+   Tokens (OKLCH) + base + utilities
+   ============================================================ */
+
+:root {
+  /* --- Color: drenched deep ink-green, off-white, one luminous jade --- */
+  --ink:            oklch(20% 0.028 168);   /* body background */
+  --ink-deep:       oklch(16% 0.026 168);   /* deepest wells, footer */
+  --surface:        oklch(25.5% 0.032 168); /* raised panels */
+  --surface-2:      oklch(29% 0.034 168);   /* nested raise / hover */
+  --line:           oklch(38% 0.022 168 / 0.55); /* hairline borders */
+  --line-soft:      oklch(38% 0.022 168 / 0.28);
+
+  --paper:          oklch(96.5% 0.012 150); /* primary text */
+  --muted:          oklch(78% 0.018 160);   /* secondary text */
+  --muted-2:        oklch(66% 0.016 162);   /* tertiary / captions */
+
+  --jade:           oklch(82% 0.155 158);   /* the one luminous accent */
+  --jade-strong:    oklch(86% 0.165 156);   /* hover / emphasis */
+  --jade-ink:       oklch(24% 0.07 165);    /* text ON jade fills */
+  --jade-glow:      oklch(82% 0.155 158 / 0.30);
+
+  /* --- Type --- */
+  --font-display: 'Sora Variable', 'Sora', system-ui, sans-serif;
+  --font-body:    'Figtree Variable', 'Figtree', system-ui, sans-serif;
+
+  --step--1: clamp(0.84rem, 0.81rem + 0.15vw, 0.92rem);
+  --step-0:  clamp(1.02rem, 0.97rem + 0.25vw, 1.18rem);
+  --step-1:  clamp(1.24rem, 1.14rem + 0.5vw, 1.55rem);
+  --step-2:  clamp(1.5rem, 1.32rem + 0.9vw, 2.1rem);
+  --step-3:  clamp(1.95rem, 1.6rem + 1.7vw, 3rem);
+  --step-4:  clamp(2.5rem, 1.9rem + 3vw, 4.4rem);
+  --step-5:  clamp(3rem, 2rem + 5vw, 5.6rem);
+
+  /* --- Space --- */
+  --sp-1: 0.5rem;  --sp-2: 0.75rem; --sp-3: 1rem;   --sp-4: 1.5rem;
+  --sp-5: 2rem;    --sp-6: 3rem;    --sp-7: 4.5rem;  --sp-8: 7rem;
+  --sp-9: 10rem;
+
+  --container: 72rem;
+  --container-narrow: 50rem;
+  --radius: 18px;
+  --radius-sm: 11px;
+  --radius-pill: 999px;
+
+  /* --- Elevation: diffuse, never heavy --- */
+  --shadow-lift: 0 1px 0 oklch(100% 0 0 / 0.04) inset,
+                 0 18px 50px -28px oklch(0% 0 0 / 0.65);
+  --shadow-glow: 0 0 0 1px oklch(82% 0.155 158 / 0.25),
+                 0 14px 44px -16px var(--jade-glow);
+
+  /* --- Motion --- */
+  --ease-out-quint: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+  --dur-1: 0.18s; --dur-2: 0.4s; --dur-3: 0.7s;
+
+  /* --- z-scale --- */
+  --z-nav: 100;
+  --z-overlay: 200;
+}
+
+/* ---------------- reset ---------------- */
+*, *::before, *::after { box-sizing: border-box; }
+* { margin: 0; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: var(--step-0);
+  line-height: 1.6;
+  color: var(--paper);
+  background: var(--ink);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+img, svg, video { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; color: inherit; cursor: pointer; background: none; border: none; }
+ul, ol { list-style: none; padding: 0; }
+:focus-visible {
+  outline: 2px solid var(--jade);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  line-height: 1.04;
+  letter-spacing: -0.025em;
+  text-wrap: balance;
+}
+p { text-wrap: pretty; }
+
+/* ---------------- layout utilities ---------------- */
+.container { width: 100%; max-width: var(--container); margin-inline: auto; padding-inline: var(--sp-4); }
+.narrow { max-width: var(--container-narrow); }
+.section { padding-block: var(--sp-8); }
+@media (max-width: 600px) { .section { padding-block: var(--sp-7); } }
+
+.eyebrow {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  font-family: var(--font-display);
+  font-size: var(--step--1);
+  font-weight: 500;
+  color: var(--jade);
+  letter-spacing: 0.01em;
+}
+.eyebrow::before {
+  content: ""; width: 22px; height: 1.5px;
+  background: var(--jade); opacity: 0.7;
+}
+
+.lede { color: var(--muted); font-size: var(--step-1); line-height: 1.5; max-width: 46ch; }
+.prose { color: var(--muted); max-width: 64ch; }
+.prose + .prose { margin-top: var(--sp-3); }
+
+/* ---------------- buttons ---------------- */
+.btn {
+  --_bg: var(--jade);
+  display: inline-flex; align-items: center; justify-content: center; gap: 0.6rem;
+  font-family: var(--font-display); font-weight: 600;
+  font-size: var(--step-0);
+  padding: 0.95rem 1.8rem;
+  border-radius: var(--radius-pill);
+  background: var(--_bg);
+  color: var(--jade-ink);
+  letter-spacing: -0.01em;
+  box-shadow: var(--shadow-glow);
+  transition: transform var(--dur-1) var(--ease-out-quart),
+              background var(--dur-1) ease,
+              box-shadow var(--dur-2) ease;
+  min-height: 52px;
+}
+.btn:hover { background: var(--jade-strong); transform: translateY(-2px); }
+.btn:active { transform: translateY(0); }
+.btn .arrow { transition: transform var(--dur-2) var(--ease-out-quint); }
+.btn:hover .arrow { transform: translateX(4px); }
+
+.btn-ghost {
+  background: transparent; color: var(--paper);
+  box-shadow: inset 0 0 0 1px var(--line);
+  font-weight: 500;
+}
+.btn-ghost:hover { background: oklch(100% 0 0 / 0.04); box-shadow: inset 0 0 0 1px var(--line); transform: translateY(-2px); }
+
+@media (prefers-reduced-motion: reduce) {
+  .btn, .btn:hover, .btn .arrow, .btn:hover .arrow { transform: none; transition: background var(--dur-1) ease; }
+}
+
+/* ---------------- reveal on scroll ---------------- */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity var(--dur-3) var(--ease-out-quint),
+              transform var(--dur-3) var(--ease-out-quint);
+  transition-delay: var(--reveal-delay, 0s);
+  will-change: opacity, transform;
+}
+[data-reveal].is-in { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] { opacity: 1; transform: none; transition: none; }
+}
+
+/* ---------------- shared bits ---------------- */
+.panel {
+  background: var(--surface);
+  border: 1px solid var(--line-soft);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-lift);
+}
+.hr { height: 1px; background: var(--line-soft); border: 0; }
+.center { text-align: center; }
+.center .lede, .center .prose { margin-inline: auto; }

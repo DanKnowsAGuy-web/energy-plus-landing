@@ -1,0 +1,96 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+const {
+  title = 'Balance Protocol™ GPS — Precision metabolic & GLP-1 optimization',
+  description = 'An at-home lab array of 150+ functional biomarkers and clinically relevant genetics, with expert interpretation. Optimize your health and your GLP-1 use from your real biochemistry. No fluff, no fear-mongering, no upsells.',
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#0c1714" />
+    <link rel="icon" href={`${import.meta.env.BASE_URL}/favicon.svg`.replace(/\/+/g, '/')} type="image/svg+xml" />
+    <title>{title}</title>
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <slot />
+
+    <script>
+      // ---- Scroll reveal (enhances already-visible content) ----
+      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const revealEls = document.querySelectorAll<HTMLElement>('[data-reveal]');
+      if (prefersReduced || !('IntersectionObserver' in window)) {
+        revealEls.forEach((el) => el.classList.add('is-in'));
+      } else {
+        const io = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('is-in');
+                io.unobserve(entry.target);
+              }
+            });
+          },
+          { rootMargin: '0px 0px -10% 0px', threshold: 0.12 }
+        );
+        revealEls.forEach((el) => io.observe(el));
+      }
+
+      // ---- Count-up for stat figures ----
+      const countEls = document.querySelectorAll<HTMLElement>('[data-count]');
+      const animateCount = (el: HTMLElement) => {
+        const target = Number(el.dataset.count || '0');
+        if (prefersReduced) { el.textContent = String(target); return; }
+        const dur = 1100;
+        const start = performance.now();
+        const tick = (now: number) => {
+          const t = Math.min((now - start) / dur, 1);
+          const eased = 1 - Math.pow(1 - t, 4);
+          el.textContent = String(Math.round(target * eased));
+          if (t < 1) requestAnimationFrame(tick);
+        };
+        requestAnimationFrame(tick);
+      };
+      if ('IntersectionObserver' in window) {
+        const cio = new IntersectionObserver((entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) { animateCount(e.target as HTMLElement); cio.unobserve(e.target); }
+          });
+        }, { threshold: 0.6 });
+        countEls.forEach((el) => cio.observe(el));
+      } else {
+        countEls.forEach((el) => { el.textContent = el.dataset.count || ''; });
+      }
+
+      // ---- Sticky nav state ----
+      const nav = document.querySelector<HTMLElement>('[data-nav]');
+      if (nav) {
+        const onScroll = () => nav.classList.toggle('is-scrolled', window.scrollY > 24);
+        onScroll();
+        window.addEventListener('scroll', onScroll, { passive: true });
+      }
+    </script>
+    <style is:global>
+      .skip-link {
+        position: fixed; top: -100px; left: 1rem; z-index: 999;
+        background: var(--jade); color: var(--jade-ink);
+        padding: 0.6rem 1rem; border-radius: 8px; font-weight: 600;
+        transition: top 0.2s ease;
+      }
+      .skip-link:focus { top: 1rem; }
+    </style>
+  </body>
+</html>

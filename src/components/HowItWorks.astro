@@ -1,0 +1,77 @@
+---
+const steps = [
+  {
+    n: '1',
+    title: 'Enroll',
+    body: 'Your GPS kit arrives ready to use at home, with video instruction. No lab draw facility, no waiting room.',
+  },
+  {
+    n: '2',
+    title: 'Submit your labs',
+    body: 'Collect a cheek swab, a finger prick, and a urine sample. Drop the prepaid label in the mail and results follow in about two to three weeks.',
+  },
+  {
+    n: '3',
+    title: 'Receive results',
+    body: 'Your PDF report is emailed to you with a full analysis and a plain-language guide to what it means, all without leaving home.',
+  },
+];
+---
+
+<section class="section how" id="how">
+  <div class="container">
+    <div class="how__head">
+      <p class="eyebrow" data-reveal>How it works</p>
+      <h2 class="how__title" data-reveal style="--reveal-delay: 0.06s">
+        Three steps, start to insight.
+      </h2>
+    </div>
+
+    <ol class="how__steps">
+      {steps.map((s, i) => (
+        <li class="step" data-reveal style={`--reveal-delay: ${0.1 * i}s`}>
+          <span class="step__n">{s.n}</span>
+          <div class="step__line" aria-hidden="true"></div>
+          <h3 class="step__title">{s.title}</h3>
+          <p class="step__body">{s.body}</p>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>
+
+<style>
+  .how { background: linear-gradient(180deg, var(--ink-deep) 0%, var(--ink) 100%); }
+  .how__head { max-width: 40rem; margin-bottom: var(--sp-7); }
+  .how__title { font-size: var(--step-3); margin-top: var(--sp-3); }
+
+  .how__steps {
+    display: grid; gap: var(--sp-6);
+    grid-template-columns: 1fr;
+    counter-reset: step;
+  }
+  .step { position: relative; }
+  .step__n {
+    display: inline-grid; place-items: center;
+    width: 52px; height: 52px; border-radius: 50%;
+    font-family: var(--font-display); font-weight: 600; font-size: var(--step-1);
+    color: var(--jade-ink); background: var(--jade);
+    box-shadow: var(--shadow-glow);
+    position: relative; z-index: 1;
+  }
+  .step__line {
+    position: absolute; top: 26px; left: 52px; right: -1.5rem; height: 1.5px;
+    background: linear-gradient(90deg, var(--jade), var(--line-soft));
+    opacity: 0.5;
+  }
+  .step:last-child .step__line { display: none; }
+  .step__title { font-size: var(--step-1); margin: var(--sp-4) 0 var(--sp-2); }
+  .step__body { color: var(--muted); max-width: 38ch; }
+
+  @media (min-width: 760px) {
+    .how__steps { grid-template-columns: repeat(3, 1fr); gap: var(--sp-5); }
+  }
+  @media (max-width: 759px) {
+    .step__line { display: none; }
+  }
+</style>

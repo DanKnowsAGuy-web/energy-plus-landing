@@ -1,0 +1,73 @@
+---
+const links = [
+  { href: '#how', label: 'How it works' },
+  { href: '#array', label: "What's tested" },
+  { href: '#glp1', label: 'GLP-1' },
+  { href: '#faq', label: 'FAQ' },
+];
+---
+
+<header class="nav" data-nav>
+  <div class="container nav__inner">
+    <a href="#main" class="brand" aria-label="Balance Protocol GPS home">
+      <svg class="brand__mark" viewBox="0 0 32 32" aria-hidden="true" width="30" height="30">
+        <path d="M4 20 L11 20 L14 8 L18 24 L21 14 L24 14 L27 11"
+              fill="none" stroke="var(--jade)" stroke-width="2.2"
+              stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="21" cy="14" r="2.2" fill="var(--jade)"/>
+      </svg>
+      <span class="brand__text">Balance Protocol <span class="brand__gps">GPS</span></span>
+    </a>
+
+    <nav class="nav__links" aria-label="Primary">
+      {links.map((l) => <a href={l.href}>{l.label}</a>)}
+    </nav>
+
+    <a href="#enroll" class="btn nav__cta">Enroll<span class="arrow" aria-hidden="true">→</span></a>
+  </div>
+</header>
+
+<style>
+  .nav {
+    position: sticky; top: 0; z-index: var(--z-nav);
+    transition: background var(--dur-2) ease, border-color var(--dur-2) ease, backdrop-filter var(--dur-2) ease;
+    border-bottom: 1px solid transparent;
+  }
+  .nav.is-scrolled {
+    background: oklch(18% 0.026 168 / 0.72);
+    backdrop-filter: blur(14px) saturate(1.4);
+    -webkit-backdrop-filter: blur(14px) saturate(1.4);
+    border-bottom-color: var(--line-soft);
+  }
+  .nav__inner {
+    display: flex; align-items: center; gap: var(--sp-4);
+    min-height: 72px;
+  }
+  .brand { display: inline-flex; align-items: center; gap: 0.6rem; font-family: var(--font-display); font-weight: 600; letter-spacing: -0.02em; }
+  .brand__mark { flex: none; }
+  .brand__gps { color: var(--jade); }
+  .brand__text { font-size: 1.05rem; }
+
+  .nav__links { display: none; margin-left: auto; gap: var(--sp-5); }
+  .nav__links a {
+    color: var(--muted); font-size: var(--step--1); font-weight: 500;
+    position: relative; padding-block: 0.4rem;
+    transition: color var(--dur-1) ease;
+  }
+  .nav__links a::after {
+    content: ""; position: absolute; left: 0; bottom: 0; height: 1.5px; width: 0;
+    background: var(--jade); transition: width var(--dur-2) var(--ease-out-quint);
+  }
+  .nav__links a:hover { color: var(--paper); }
+  .nav__links a:hover::after { width: 100%; }
+
+  .nav__cta { padding: 0.6rem 1.3rem; min-height: 44px; margin-left: auto; }
+
+  @media (min-width: 860px) {
+    .nav__links { display: flex; }
+    .nav__cta { margin-left: 0; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .nav__links a::after { transition: none; }
+  }
+</style>

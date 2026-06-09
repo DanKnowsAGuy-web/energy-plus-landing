@@ -1,0 +1,71 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer__cta panel" data-reveal>
+      <div>
+        <h2 class="footer__ctaTitle">Start testing what actually matters.</h2>
+        <p class="prose">Your roadmap begins with knowing how your body operates today.</p>
+      </div>
+      <a href="#enroll" class="btn">Get protocol started<span class="arrow" aria-hidden="true">→</span></a>
+    </div>
+
+    <div class="footer__main">
+      <a href="#main" class="brand">
+        <svg viewBox="0 0 32 32" aria-hidden="true" width="26" height="26">
+          <path d="M4 20 L11 20 L14 8 L18 24 L21 14 L24 14 L27 11"
+                fill="none" stroke="var(--jade)" stroke-width="2.2"
+                stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="21" cy="14" r="2.2" fill="var(--jade)"/>
+        </svg>
+        <span>Balance Protocol <span style="color:var(--jade)">GPS</span></span>
+      </a>
+      <p class="footer__tag">
+        A systems-biology program fusing functional biomarkers, clinically relevant
+        genetics, and expert interpretation, powered by NutraCoreX™.
+      </p>
+    </div>
+
+    <hr class="hr" />
+
+    <p class="footer__disclaimer">
+      NutraCoreX™ provides wellness insights based on real-time functional biomarkers
+      and targeted genetic variations. Health outcomes depend on multiple factors,
+      including lifestyle, diet, and environment. This test is not intended to diagnose,
+      treat, cure, or prevent any disease. Individual results may vary. Consult a
+      healthcare professional before making health decisions.
+    </p>
+
+    <p class="footer__legal">
+      © {year} Balance Protocol™ GPS. All rights reserved. Lab services by Genova Diagnostics.
+    </p>
+  </div>
+</footer>
+
+<style>
+  .footer { background: var(--ink-deep); padding-block: var(--sp-7) var(--sp-6); border-top: 1px solid var(--line-soft); }
+  .footer__cta {
+    display: grid; gap: var(--sp-4); align-items: center;
+    padding: var(--sp-6);
+    margin-bottom: var(--sp-7);
+    background:
+      radial-gradient(90% 140% at 90% 0%, oklch(28% 0.05 162 / 0.6), transparent 60%),
+      var(--surface);
+  }
+  .footer__ctaTitle { font-size: var(--step-2); margin-bottom: var(--sp-2); }
+  @media (min-width: 760px) {
+    .footer__cta { grid-template-columns: 1fr auto; gap: var(--sp-6); }
+  }
+
+  .footer__main { display: grid; gap: var(--sp-3); margin-bottom: var(--sp-5); }
+  .brand { display: inline-flex; align-items: center; gap: 0.6rem; font-family: var(--font-display); font-weight: 600; letter-spacing: -0.02em; }
+  .footer__tag { color: var(--muted-2); max-width: 52ch; font-size: var(--step--1); }
+  @media (min-width: 760px) {
+    .footer__main { grid-template-columns: auto 1fr; align-items: center; gap: var(--sp-6); }
+  }
+
+  .footer__disclaimer { color: var(--muted-2); font-size: var(--step--1); line-height: 1.55; max-width: 90ch; margin-top: var(--sp-5); }
+  .footer__legal { color: var(--muted-2); font-size: var(--step--1); margin-top: var(--sp-4); }
+</style>

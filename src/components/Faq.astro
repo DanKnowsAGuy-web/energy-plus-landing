@@ -1,0 +1,87 @@
+---
+const faqs = [
+  {
+    q: 'What is NutraCoreX™?',
+    a: 'A comprehensive at-home lab kit that combines genetic SNP analysis with real-time functional biomarkers to give you a full picture of your health. No guesswork, no gimmicks.',
+  },
+  {
+    q: 'Do I need to go to a lab?',
+    a: 'No. NutraCoreX™ is collected entirely at home. You provide a cheek swab, a finger prick, and a urine sample.',
+  },
+  {
+    q: 'How long does it take to get results?',
+    a: 'Once the lab receives your samples, results are typically available within 10 to 14 business days.',
+  },
+  {
+    q: 'Can I order this if I live outside the U.S.?',
+    a: 'Yes. NutraCoreX™ ships internationally. An additional charge may apply for international FedEx delivery.',
+  },
+  {
+    q: 'Will I be pressured to buy supplements?',
+    a: 'No. There are no supplement funnels here. You get real guidance from Dr. Beck via video interpretation, plus the option to work with a certified practitioner if you choose.',
+  },
+  {
+    q: 'Is my DNA or data stored?',
+    a: 'No. Genova Diagnostics does not retain your DNA or personal health data. You receive your results, and that is it.',
+  },
+  {
+    q: 'Do I need a practitioner to interpret this?',
+    a: 'Only if you want one. Every kit includes detailed video explanations and a full guide. For extra support, you can book a session with a Balance Protocol™ practitioner.',
+  },
+];
+---
+
+<section class="section faq" id="faq">
+  <div class="container narrow">
+    <div class="center">
+      <p class="eyebrow" data-reveal style="justify-content:center">Frequently asked questions</p>
+      <h2 class="faq__title" data-reveal style="--reveal-delay: 0.06s">
+        Answers, before you ask.
+      </h2>
+    </div>
+
+    <div class="faq__list" data-reveal style="--reveal-delay: 0.1s">
+      {faqs.map((f, i) => (
+        <details class="qa" name="faq" open={i === 0}>
+          <summary class="qa__q">
+            <span>{f.q}</span>
+            <span class="qa__icon" aria-hidden="true"></span>
+          </summary>
+          <div class="qa__a"><p>{f.a}</p></div>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .faq__title { font-size: var(--step-3); margin-top: var(--sp-3); margin-bottom: var(--sp-7); }
+  .faq__list { display: grid; gap: 1px; background: var(--line-soft); border: 1px solid var(--line-soft); border-radius: var(--radius); overflow: hidden; }
+
+  .qa { background: var(--ink); transition: background var(--dur-2) ease; }
+  .qa[open] { background: var(--surface); }
+  .qa__q {
+    display: flex; align-items: center; justify-content: space-between; gap: var(--sp-4);
+    padding: var(--sp-4) var(--sp-5);
+    font-family: var(--font-display); font-weight: 600; font-size: var(--step-0);
+    list-style: none; cursor: pointer;
+  }
+  .qa__q::-webkit-details-marker { display: none; }
+  .qa__icon { position: relative; flex: none; width: 16px; height: 16px; }
+  .qa__icon::before, .qa__icon::after {
+    content: ""; position: absolute; inset: 0; margin: auto;
+    background: var(--jade); border-radius: 2px;
+  }
+  .qa__icon::before { width: 16px; height: 2px; }
+  .qa__icon::after { width: 2px; height: 16px; transition: transform var(--dur-2) var(--ease-out-quint); }
+  .qa[open] .qa__icon::after { transform: scaleY(0); }
+
+  .qa__a { display: grid; grid-template-rows: 0fr; transition: grid-template-rows var(--dur-2) var(--ease-out-quint); }
+  .qa[open] .qa__a { grid-template-rows: 1fr; }
+  .qa__a > p { overflow: hidden; color: var(--muted); padding: 0 var(--sp-5); }
+  .qa[open] .qa__a > p { padding-bottom: var(--sp-5); }
+
+  @media (prefers-reduced-motion: reduce) {
+    .qa__a, .qa__icon::after { transition: none; }
+  }
+</style>

@@ -1,0 +1,60 @@
+---
+const stats = [
+  { count: 150, suffix: '+', label: 'biomarkers measured', sub: 'across your functional systems' },
+  { count: 6, suffix: '', label: 'physiological categories', sub: 'one connected picture' },
+  { count: 0, suffix: '', label: 'lab visits required', sub: 'collected at home' },
+];
+---
+
+<section class="section" id="what">
+  <div class="container narrow center">
+    <p class="eyebrow" data-reveal>What NutraCoreX™ is</p>
+    <h2 class="h" data-reveal style="--reveal-delay: 0.06s">
+      Comprehensive testing. Zero guesswork.
+    </h2>
+    <p class="lede" data-reveal style="--reveal-delay: 0.12s">
+      NutraCoreX™ is an at-home lab array that pairs functional biomarkers with
+      clinically relevant genetics, so you get actionable data about your own body.
+      It reads your nutritional status, immune function, detoxification, cellular
+      energy, inflammation, and more, in real time.
+    </p>
+  </div>
+
+  <div class="container">
+    <div class="stats" data-reveal style="--reveal-delay: 0.18s">
+      {stats.map((s) => (
+        <div class="stat">
+          <p class="stat__num">
+            <span data-count={s.count}>0</span>{s.suffix}
+          </p>
+          <p class="stat__label">{s.label}</p>
+          <p class="stat__sub">{s.sub}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .h { font-size: var(--step-3); margin: var(--sp-3) 0 var(--sp-4); }
+  .stats {
+    margin-top: var(--sp-7);
+    display: grid; gap: var(--sp-3);
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  }
+  .stat {
+    padding: var(--sp-5);
+    background: linear-gradient(180deg, var(--surface) 0%, var(--ink) 140%);
+    border: 1px solid var(--line-soft);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-lift);
+  }
+  .stat__num {
+    font-family: var(--font-display); font-weight: 600;
+    font-size: var(--step-4); line-height: 1; color: var(--jade);
+    letter-spacing: -0.04em;
+    font-variant-numeric: tabular-nums;
+  }
+  .stat__label { margin-top: var(--sp-2); font-weight: 600; color: var(--paper); }
+  .stat__sub { color: var(--muted-2); font-size: var(--step--1); }
+</style>

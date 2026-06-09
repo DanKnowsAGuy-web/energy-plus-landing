@@ -1,0 +1,109 @@
+---
+const categories = [
+  {
+    n: '01',
+    name: 'Nutritional status',
+    markers: ['Vitamin markers', 'Essential amino acids', 'Fatty acids', 'Nutrient elements', 'Carbohydrate markers'],
+  },
+  {
+    n: '02',
+    name: 'Cellular energy & metabolism',
+    markers: ['Cellular energy & mitochondrial markers', 'Urea cycle markers', 'Oxalate markers'],
+  },
+  {
+    n: '03',
+    name: 'Methylation & neurotransmitters',
+    markers: ['Methylation markers', 'Neurotransmitter metabolites', 'Catecholamine markers'],
+  },
+  {
+    n: '04',
+    name: 'Detoxification & toxic load',
+    markers: ['Toxin & detoxification markers', 'Toxic elements', 'Oxidative stress markers'],
+  },
+  {
+    n: '05',
+    name: 'Environmental exposure',
+    markers: ['Microplastic chemicals', 'Petroleum chemicals'],
+  },
+  {
+    n: '06',
+    name: 'Gut & signaling',
+    markers: ['Malabsorption & dysbiosis markers', 'Peptide markers'],
+  },
+];
+---
+
+<section class="section array" id="array">
+  <div class="container">
+    <div class="array__head">
+      <div>
+        <p class="eyebrow" data-reveal>The full array</p>
+        <h2 class="array__title" data-reveal style="--reveal-delay: 0.06s">
+          One panel. Six systems. The full picture.
+        </h2>
+      </div>
+      <p class="prose array__intro" data-reveal style="--reveal-delay: 0.12s">
+        Most tests look at five genes or a single marker, then sell you a list of
+        supplements. NutraCoreX™ maps over 150 biomarkers across six connected
+        physiological categories, so your protocol is built on how your body actually works.
+      </p>
+    </div>
+
+    <ul class="array__list">
+      {categories.map((cat, i) => (
+        <li class="cat" data-reveal style={`--reveal-delay: ${0.04 * i}s`}>
+          <span class="cat__n">{cat.n}</span>
+          <h3 class="cat__name">{cat.name}</h3>
+          <ul class="cat__markers">
+            {cat.markers.map((m) => <li class="tag">{m}</li>)}
+          </ul>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<style>
+  .array { background: linear-gradient(180deg, var(--ink) 0%, var(--ink-deep) 100%); }
+  .array__head {
+    display: grid; gap: var(--sp-4); align-items: end;
+    margin-bottom: var(--sp-6);
+  }
+  .array__title { font-size: var(--step-3); margin-top: var(--sp-3); }
+  @media (min-width: 820px) {
+    .array__head { grid-template-columns: 1.1fr 0.9fr; gap: var(--sp-6); }
+    .array__intro { padding-bottom: 0.4rem; }
+  }
+
+  .array__list { display: grid; gap: 1px; background: var(--line-soft); border: 1px solid var(--line-soft); border-radius: var(--radius); overflow: hidden; }
+  .cat {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: var(--sp-2) var(--sp-4);
+    padding: var(--sp-5);
+    background: var(--ink);
+    transition: background var(--dur-2) ease;
+  }
+  .cat:hover { background: var(--surface); }
+  .cat__n {
+    font-family: var(--font-display); font-weight: 600;
+    color: var(--jade); font-size: var(--step-1);
+    letter-spacing: -0.03em; line-height: 1;
+    font-variant-numeric: tabular-nums;
+  }
+  .cat__name { font-size: var(--step-1); align-self: center; }
+  .cat__markers {
+    grid-column: 2;
+    display: flex; flex-wrap: wrap; gap: 0.5rem;
+  }
+  .tag {
+    font-size: var(--step--1); color: var(--muted);
+    padding: 0.35rem 0.8rem; border-radius: var(--radius-pill);
+    background: oklch(100% 0 0 / 0.035);
+    border: 1px solid var(--line-soft);
+  }
+  @media (min-width: 720px) {
+    .cat { grid-template-columns: 3rem 18rem 1fr; align-items: center; gap: var(--sp-5); }
+    .cat__markers { grid-column: auto; }
+  }
+</style>

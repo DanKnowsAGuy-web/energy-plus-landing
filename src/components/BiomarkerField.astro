@@ -1,0 +1,102 @@
+---
+// Abstract "biomarker terrain": a constellation of physiological nodes,
+// connective pathways, and a flowing signal trace. Pure SVG + CSS.
+const nodes = [
+  { x: 62, y: 22, r: 3.2, d: 0 },
+  { x: 74, y: 34, r: 2.2, d: 0.4 },
+  { x: 84, y: 26, r: 4, d: 0.9 },
+  { x: 88, y: 46, r: 2.6, d: 1.3 },
+  { x: 70, y: 54, r: 3.4, d: 0.6 },
+  { x: 80, y: 64, r: 2.2, d: 1.6 },
+  { x: 58, y: 44, r: 2.4, d: 1.1 },
+  { x: 92, y: 62, r: 3, d: 2 },
+  { x: 66, y: 74, r: 2.6, d: 0.2 },
+  { x: 50, y: 30, r: 2, d: 1.8 },
+];
+const links = [
+  [0, 1], [1, 2], [2, 3], [1, 4], [4, 5], [0, 6], [6, 4],
+  [3, 7], [5, 7], [4, 8], [0, 9], [6, 9], [5, 8],
+];
+---
+
+<svg class="bf" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid slice" role="presentation">
+  <defs>
+    <radialGradient id="bf-glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="var(--jade)" stop-opacity="0.9" />
+      <stop offset="100%" stop-color="var(--jade)" stop-opacity="0" />
+    </radialGradient>
+    <linearGradient id="bf-trace" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="var(--jade)" stop-opacity="0" />
+      <stop offset="50%" stop-color="var(--jade)" stop-opacity="0.85" />
+      <stop offset="100%" stop-color="var(--jade)" stop-opacity="0" />
+    </linearGradient>
+  </defs>
+
+  <!-- ambient grid rings -->
+  <g class="bf__rings" stroke="var(--line)" fill="none" stroke-width="0.15">
+    <circle cx="75" cy="44" r="20" />
+    <circle cx="75" cy="44" r="32" />
+    <circle cx="75" cy="44" r="44" />
+  </g>
+
+  <!-- connective pathways -->
+  <g stroke="var(--jade)" stroke-width="0.18" opacity="0.5">
+    {links.map(([a, b]) => (
+      <line x1={nodes[a].x} y1={nodes[a].y} x2={nodes[b].x} y2={nodes[b].y} class="bf__link" />
+    ))}
+  </g>
+
+  <!-- flowing signal trace (waveform across the field) -->
+  <path
+    class="bf__trace"
+    d="M -5 70 Q 12 55 22 68 T 44 60 Q 56 52 64 64 T 86 56 Q 98 50 110 62"
+    fill="none" stroke="url(#bf-trace)" stroke-width="0.6" stroke-linecap="round"
+  />
+
+  <!-- biomarker nodes -->
+  {nodes.map((n) => (
+    <g class="bf__node" style={`--d:${n.d}s`}>
+      <circle cx={n.x} cy={n.y} r={n.r * 3} fill="url(#bf-glow)" class="bf__halo" />
+      <circle cx={n.x} cy={n.y} r={n.r} fill="var(--jade)" />
+    </g>
+  ))}
+</svg>
+
+<style>
+  .bf { width: 100%; height: 100%; }
+
+  .bf__rings { animation: bf-spin 80s linear infinite; transform-origin: 75px 44px; }
+  .bf__trace {
+    stroke-dasharray: 60 200;
+    stroke-dashoffset: 260;
+    animation: bf-flow 6s var(--ease-out-quint) infinite;
+  }
+  .bf__node .bf__halo {
+    transform-box: fill-box; transform-origin: center;
+    animation: bf-pulse 4.5s ease-in-out infinite;
+    animation-delay: var(--d);
+  }
+  .bf__link {
+    stroke-dasharray: 1 3;
+    animation: bf-dash 8s linear infinite;
+  }
+
+  @keyframes bf-spin { to { transform: rotate(360deg); } }
+  @keyframes bf-flow {
+    0% { stroke-dashoffset: 260; opacity: 0; }
+    20% { opacity: 1; }
+    80% { opacity: 1; }
+    100% { stroke-dashoffset: 0; opacity: 0; }
+  }
+  @keyframes bf-pulse {
+    0%, 100% { opacity: 0.25; transform: scale(0.8); }
+    50% { opacity: 0.7; transform: scale(1.15); }
+  }
+  @keyframes bf-dash { to { stroke-dashoffset: -40; } }
+
+  @media (prefers-reduced-motion: reduce) {
+    .bf__rings, .bf__trace, .bf__node .bf__halo, .bf__link { animation: none; }
+    .bf__trace { stroke-dashoffset: 0; opacity: 0.6; stroke-dasharray: none; }
+    .bf__node .bf__halo { opacity: 0.5; }
+  }
+</style>
