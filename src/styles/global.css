@@ -219,4 +219,5 @@ p { text-wrap: pretty; }
 }
 .hr { height: 1px; background: var(--line-soft); border: 0; }
 .center { text-align: center; }
+.nb { white-space: nowrap; }
 .center .lede, .center .prose { margin-inline: auto; }

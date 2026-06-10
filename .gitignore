@@ -2,6 +2,9 @@
 dist/
 .output/
 
+# local screenshot artifacts
+.screens/
+
 # dependencies
 node_modules/
 
