@@ -54,6 +54,15 @@ const stats = [
     letter-spacing: -0.04em;
     font-variant-numeric: tabular-nums;
   }
+  /* lock-in: the readout flashes as it snaps to its final value */
+  .stat__num.locked { animation: statLock 0.55s var(--ease-out-quint); }
+  @keyframes statLock {
+    0%   { color: var(--jade-strong); text-shadow: 0 0 24px var(--jade-glow); }
+    100% { color: var(--jade); text-shadow: none; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .stat__num.locked { animation: none; }
+  }
   .stat__label { margin-top: var(--sp-2); font-weight: 600; color: var(--paper); }
   .stat__sub { color: var(--muted-2); font-size: var(--step--1); }
 </style>

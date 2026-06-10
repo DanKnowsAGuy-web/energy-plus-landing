@@ -3,10 +3,11 @@ import BiomarkerField from './BiomarkerField.astro';
 ---
 
 <section class="hero" id="main">
-  <div class="hero__field" aria-hidden="true">
+  <div class="hero__field" data-parallax aria-hidden="true">
     <BiomarkerField />
   </div>
   <div class="hero__veil" aria-hidden="true"></div>
+  <div class="hero__scan" aria-hidden="true"></div>
 
   <div class="container hero__inner">
     <div class="hero__copy">
@@ -50,8 +51,38 @@ import BiomarkerField from './BiomarkerField.astro';
     isolation: isolate;
   }
   .hero__field {
-    position: absolute; inset: 0; z-index: -2;
+    position: absolute; inset: -4%; z-index: -2;
     opacity: 0.9;
+    /* cursor parallax: JS sets --px / --py in px */
+    transform: translate3d(var(--px, 0), var(--py, 0), 0);
+    transition: transform 0.5s var(--ease-out-quart);
+    will-change: transform;
+  }
+
+  /* one-time scan sweep, like a lab reading the sample */
+  .hero__scan {
+    position: absolute; inset: 0; z-index: -1; pointer-events: none;
+    background: linear-gradient(180deg,
+      transparent 0%,
+      oklch(82% 0.155 158 / 0.06) 44%,
+      var(--jade) 50%,
+      oklch(82% 0.155 158 / 0.06) 56%,
+      transparent 100%);
+    background-size: 100% 22%;
+    background-repeat: no-repeat;
+    opacity: 0;
+    mix-blend-mode: screen;
+    animation: hero-scan 2.1s var(--ease-out-quint) 0.3s 1 forwards;
+  }
+  @keyframes hero-scan {
+    0%   { background-position: 0 -30%; opacity: 0; }
+    12%  { opacity: 0.9; }
+    88%  { opacity: 0.7; }
+    100% { background-position: 0 130%; opacity: 0; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .hero__field { transition: none; transform: none; }
+    .hero__scan { animation: none; opacity: 0; }
   }
   .hero__veil {
     position: absolute; inset: 0; z-index: -1;

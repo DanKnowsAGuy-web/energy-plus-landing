@@ -1,4 +1,5 @@
 ---
+import DoseCurve from './DoseCurve.astro';
 const pillars = [
   { title: 'Dosage context', body: 'Information about how your physiology may respond, to support a dose conversation with your clinician rather than a default ramp.' },
   { title: 'Timing context', body: 'Your metabolic and nutrient picture, which can help inform when and how dosing fits your routine.' },
@@ -23,6 +24,7 @@ const pillars = [
         We do not prescribe and we do not replace your provider. We give you and your
         clinician better information to work from.<sup class="glp1__fn"><a href="#disclaimer" aria-label="Read important disclaimer">2</a></sup>
       </p>
+      <DoseCurve />
     </div>
 
     <ul class="glp1__pillars" data-stagger>

@@ -91,6 +91,18 @@ const categories = [
     letter-spacing: -0.03em; line-height: 1;
     font-variant-numeric: tabular-nums;
   }
+  /* signal pulse: numbers light up in sequence, like data moving through the systems */
+  [data-stagger].is-in .cat__n {
+    animation: sysPulse 0.9s ease-out calc(0.35s + var(--i, 0) * 0.16s) both;
+  }
+  @keyframes sysPulse {
+    0%   { color: var(--muted-2); text-shadow: none; }
+    35%  { color: var(--jade-strong); text-shadow: 0 0 18px var(--jade-glow); }
+    100% { color: var(--jade); text-shadow: none; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    [data-stagger].is-in .cat__n { animation: none; }
+  }
   .cat__name { font-size: var(--step-1); align-self: center; }
   .cat__markers {
     grid-column: 2;

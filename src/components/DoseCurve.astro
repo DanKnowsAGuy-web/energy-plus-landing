@@ -1,0 +1,77 @@
+---
+// "Argument as motion": a guided, settling response curve drawn in jade,
+// against an erratic guesswork line. Draws itself when scrolled into view.
+---
+
+<figure class="dose" data-reveal aria-label="An illustration contrasting a steady, guided response with erratic guesswork.">
+  <svg class="dose__svg" viewBox="0 0 220 120" role="img" preserveAspectRatio="xMidYMid meet">
+    <!-- baseline grid -->
+    <g stroke="var(--line-soft)" stroke-width="0.6">
+      <line x1="8" y1="104" x2="212" y2="104" />
+      <line x1="8" y1="70"  x2="212" y2="70" stroke-dasharray="2 4" />
+      <line x1="8" y1="36"  x2="212" y2="36" stroke-dasharray="2 4" />
+    </g>
+
+    <!-- guesswork: erratic -->
+    <path class="dose__guess" pathLength="1"
+      d="M10 84 L31 56 L52 88 L73 50 L94 82 L115 52 L136 86 L157 58 L178 80 L200 66"
+      fill="none" stroke="var(--muted-2)" stroke-width="1.6"
+      stroke-linejoin="round" stroke-linecap="round" stroke-dasharray="3 3" opacity="0.55" />
+
+    <!-- guided: smooth, settles high -->
+    <path class="dose__guided" pathLength="1"
+      d="M10 92 C46 90 66 58 96 46 S168 30 210 27"
+      fill="none" stroke="var(--jade)" stroke-width="2.6"
+      stroke-linejoin="round" stroke-linecap="round" />
+    <circle class="dose__dot" cx="210" cy="27" r="3.4" fill="var(--jade)" />
+  </svg>
+  <figcaption class="dose__legend">
+    <span class="dose__key dose__key--guided">Guided by your data</span>
+    <span class="dose__key dose__key--guess">Guesswork</span>
+  </figcaption>
+</figure>
+
+<style>
+  .dose {
+    margin: var(--sp-5) 0 0;
+    padding: var(--sp-4);
+    background: oklch(100% 0 0 / 0.025);
+    border: 1px solid var(--line-soft);
+    border-radius: var(--radius);
+  }
+  .dose__svg { width: 100%; height: auto; display: block; overflow: visible; }
+
+  .dose__guided {
+    stroke-dasharray: 1; stroke-dashoffset: 1;
+    filter: drop-shadow(0 0 6px var(--jade-glow));
+  }
+  .dose__guess { stroke-dasharray: 1; stroke-dashoffset: 1; }
+  .dose__dot { opacity: 0; transform-box: fill-box; transform-origin: center; }
+
+  [data-reveal].is-in .dose__guess {
+    animation: dose-draw 1s ease-out 0.15s forwards;
+  }
+  [data-reveal].is-in .dose__guided {
+    animation: dose-draw 1.3s var(--ease-out-quint) 0.45s forwards;
+  }
+  [data-reveal].is-in .dose__dot {
+    animation: dose-pop 0.5s var(--ease-out-quint) 1.6s forwards;
+  }
+  @keyframes dose-draw { to { stroke-dashoffset: 0; } }
+  @keyframes dose-pop {
+    0% { opacity: 0; transform: scale(0); }
+    70% { opacity: 1; transform: scale(1.35); }
+    100% { opacity: 1; transform: scale(1); }
+  }
+
+  .dose__legend { display: flex; gap: var(--sp-4); margin-top: var(--sp-3); }
+  .dose__key { font-size: var(--step--1); color: var(--muted-2); display: inline-flex; align-items: center; gap: 0.45rem; }
+  .dose__key::before { content: ""; width: 14px; height: 2.5px; border-radius: 2px; }
+  .dose__key--guided::before { background: var(--jade); }
+  .dose__key--guess::before { background: var(--muted-2); }
+
+  @media (prefers-reduced-motion: reduce) {
+    .dose__guided, .dose__guess { stroke-dashoffset: 0; animation: none; }
+    .dose__dot { opacity: 1; animation: none; }
+  }
+</style>

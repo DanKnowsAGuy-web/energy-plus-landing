@@ -75,6 +75,15 @@ const includes = [
     position: absolute; inset: -40% 40% auto -10%; height: 60%; z-index: -1;
     background: radial-gradient(closest-side, var(--jade-glow), transparent 70%);
     filter: blur(20px); opacity: 0.5;
+    transform-origin: 30% 40%;
+    animation: cardBreathe 9s ease-in-out infinite;
+  }
+  @keyframes cardBreathe {
+    0%, 100% { opacity: 0.35; transform: scale(0.95) translate(0, 0); }
+    50%      { opacity: 0.62; transform: scale(1.08) translate(6%, 2%); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .card__glow { animation: none; opacity: 0.45; }
   }
   .card__name { font-family: var(--font-display); font-weight: 600; color: var(--muted); }
   .card__price { display: flex; align-items: baseline; gap: 0.3rem; margin-top: var(--sp-2); }

@@ -157,13 +157,24 @@ p { text-wrap: pretty; }
   color: var(--jade-ink);
   letter-spacing: -0.01em;
   box-shadow: var(--shadow-glow);
+  position: relative; overflow: hidden;
+  transform: translate3d(var(--bx, 0px), var(--by, 0px), 0);
   transition: transform var(--dur-1) var(--ease-out-quart),
               background var(--dur-1) ease,
               box-shadow var(--dur-2) ease;
   min-height: 52px;
 }
-.btn:hover { background: var(--jade-strong); transform: translateY(-2px); }
-.btn:active { transform: translateY(0) scale(0.975); transition-duration: 90ms; }
+/* cursor-following sheen on the primary action (magnetic feel) */
+.btn:not(.btn-ghost)::after {
+  content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none;
+  background: radial-gradient(120px circle at var(--mx, 50%) var(--my, 50%),
+              oklch(100% 0 0 / 0.55), transparent 60%);
+  mix-blend-mode: soft-light; /* brightens the fill, never washes the label */
+  opacity: 0; transition: opacity var(--dur-2) ease;
+}
+.btn:not(.btn-ghost):hover::after { opacity: 1; }
+.btn:hover { background: var(--jade-strong); transform: translate3d(var(--bx, 0px), calc(var(--by, 0px) - 2px), 0); }
+.btn:active { transform: translate3d(var(--bx, 0px), var(--by, 0px), 0) scale(0.975); transition-duration: 90ms; }
 .btn .arrow { transition: transform var(--dur-2) var(--ease-out-quint); }
 .btn:hover .arrow { transform: translateX(4px); }
 

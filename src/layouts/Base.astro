@@ -67,7 +67,12 @@ const {
           const t = Math.min((now - start) / dur, 1);
           const eased = 1 - Math.pow(1 - t, 4);
           el.textContent = String(Math.round(target * eased));
-          if (t < 1) requestAnimationFrame(tick);
+          if (t < 1) {
+            requestAnimationFrame(tick);
+          } else {
+            // lock-in flash when the readout settles
+            el.closest('.stat__num')?.classList.add('locked');
+          }
         };
         requestAnimationFrame(tick);
       };
@@ -88,6 +93,41 @@ const {
         const onScroll = () => nav.classList.toggle('is-scrolled', window.scrollY > 24);
         onScroll();
         window.addEventListener('scroll', onScroll, { passive: true });
+      }
+
+      // ---- Pointer-driven flourishes (fine pointers only, motion-safe) ----
+      const finePointer = window.matchMedia('(pointer: fine)').matches;
+      if (finePointer && !prefersReduced) {
+        // Cursor-reactive parallax on tagged layers (the hero biomarker field)
+        const layers = document.querySelectorAll<HTMLElement>('[data-parallax]');
+        if (layers.length) {
+          let raf = 0, tx = 0, ty = 0;
+          window.addEventListener('pointermove', (e) => {
+            const nx = e.clientX / window.innerWidth - 0.5;
+            const ny = e.clientY / window.innerHeight - 0.5;
+            tx = nx * 18; ty = ny * 18;
+            if (!raf) raf = requestAnimationFrame(() => {
+              layers.forEach((l) => { l.style.setProperty('--px', tx.toFixed(1) + 'px'); l.style.setProperty('--py', ty.toFixed(1) + 'px'); });
+              raf = 0;
+            });
+          }, { passive: true });
+        }
+
+        // Magnetic primary buttons: gentle lean + cursor-following sheen
+        document.querySelectorAll<HTMLElement>('.btn:not(.btn-ghost)').forEach((btn) => {
+          btn.addEventListener('pointermove', (e) => {
+            const r = btn.getBoundingClientRect();
+            const mx = e.clientX - r.left, my = e.clientY - r.top;
+            btn.style.setProperty('--mx', ((mx / r.width) * 100).toFixed(1) + '%');
+            btn.style.setProperty('--my', ((my / r.height) * 100).toFixed(1) + '%');
+            btn.style.setProperty('--bx', (((mx / r.width) - 0.5) * 8).toFixed(1) + 'px');
+            btn.style.setProperty('--by', (((my / r.height) - 0.5) * 6).toFixed(1) + 'px');
+          });
+          btn.addEventListener('pointerleave', () => {
+            btn.style.setProperty('--bx', '0px');
+            btn.style.setProperty('--by', '0px');
+          });
+        });
       }
     </script>
     <style is:global>
