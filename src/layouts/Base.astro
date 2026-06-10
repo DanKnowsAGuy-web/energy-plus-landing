@@ -61,7 +61,7 @@ const {
       const animateCount = (el: HTMLElement) => {
         const target = Number(el.dataset.count || '0');
         if (prefersReduced) { el.textContent = String(target); return; }
-        const dur = 1100;
+        const dur = 1700;
         const start = performance.now();
         const tick = (now: number) => {
           const t = Math.min((now - start) / dur, 1);

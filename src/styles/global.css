@@ -68,7 +68,7 @@
   /* --- Motion --- */
   --ease-out-quint: cubic-bezier(0.22, 1, 0.36, 1);
   --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
-  --dur-1: 0.18s; --dur-2: 0.4s; --dur-3: 0.7s;
+  --dur-1: 0.18s; --dur-2: 0.5s; --dur-3: 1s;
 
   /* --- z-scale --- */
   --z-nav: 100;

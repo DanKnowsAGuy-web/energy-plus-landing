@@ -57,7 +57,7 @@ const links = [
 
   <!-- biomarker nodes -->
   {nodes.map((n, i) => (
-    <g class="bf__node" style={`--d:${n.d}s; --sx:${n.sx}px; --sy:${n.sy}px; --cd:${0.15 + i * 0.06}s`}>
+    <g class="bf__node" style={`--d:${n.d}s; --sx:${n.sx}px; --sy:${n.sy}px; --cd:${0.2 + i * 0.1}s`}>
       <circle cx={n.x} cy={n.y} r={n.r * 3} fill="url(#bf-glow)" class="bf__halo" />
       <circle cx={n.x} cy={n.y} r={n.r} fill="var(--jade)" />
     </g>
@@ -67,29 +67,29 @@ const links = [
 <style>
   .bf { width: 100%; height: 100%; }
 
-  .bf__rings { animation: bf-spin 80s linear infinite; transform-origin: 75px 44px; }
+  .bf__rings { animation: bf-spin 120s linear infinite; transform-origin: 75px 44px; }
 
   /* ---- calibration: nodes converge in, then settle into ambient pulse ---- */
   .bf__node {
     transform-box: view-box;
-    animation: bf-calibrate 1.1s var(--ease-out-quint, cubic-bezier(0.22,1,0.36,1)) var(--cd) backwards;
+    animation: bf-calibrate 1.7s var(--ease-out-quint, cubic-bezier(0.22,1,0.36,1)) var(--cd) backwards;
   }
   .bf__node .bf__halo {
     transform-box: fill-box; transform-origin: center;
-    animation: bf-pulse 4.5s ease-in-out infinite;
-    animation-delay: calc(var(--d) + 1.2s);
+    animation: bf-pulse 6.5s ease-in-out infinite;
+    animation-delay: calc(var(--d) + 1.6s);
   }
 
   .bf__trace {
     stroke-dasharray: 60 200;
     stroke-dashoffset: 260;
-    animation: bf-flow 6s var(--ease-out-quint, cubic-bezier(0.22,1,0.36,1)) infinite;
-    animation-delay: 0.8s;
+    animation: bf-flow 8.5s var(--ease-out-quint, cubic-bezier(0.22,1,0.36,1)) infinite;
+    animation-delay: 1.1s;
   }
   /* pathways draw themselves during calibration */
   .bf__link {
     stroke-dasharray: 1 3;
-    animation: bf-draw 0.9s ease-out 0.5s backwards, bf-dash 8s linear 1.4s infinite;
+    animation: bf-draw 1.3s ease-out 0.7s backwards, bf-dash 11s linear 2s infinite;
   }
 
   @keyframes bf-calibrate {

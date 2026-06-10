@@ -55,7 +55,7 @@ import BiomarkerField from './BiomarkerField.astro';
     opacity: 0.9;
     /* cursor parallax: JS sets --px / --py in px */
     transform: translate3d(var(--px, 0), var(--py, 0), 0);
-    transition: transform 0.5s var(--ease-out-quart);
+    transition: transform 0.8s var(--ease-out-quart);
     will-change: transform;
   }
 
@@ -72,7 +72,7 @@ import BiomarkerField from './BiomarkerField.astro';
     background-repeat: no-repeat;
     opacity: 0;
     mix-blend-mode: screen;
-    animation: hero-scan 2.1s var(--ease-out-quint) 0.3s 1 forwards;
+    animation: hero-scan 3.2s var(--ease-out-quint) 0.4s 1 forwards;
   }
   @keyframes hero-scan {
     0%   { background-position: 0 -30%; opacity: 0; }

@@ -55,7 +55,7 @@ const stats = [
     font-variant-numeric: tabular-nums;
   }
   /* lock-in: the readout flashes as it snaps to its final value */
-  .stat__num.locked { animation: statLock 0.55s var(--ease-out-quint); }
+  .stat__num.locked { animation: statLock 0.8s var(--ease-out-quint); }
   @keyframes statLock {
     0%   { color: var(--jade-strong); text-shadow: 0 0 24px var(--jade-glow); }
     100% { color: var(--jade); text-shadow: none; }

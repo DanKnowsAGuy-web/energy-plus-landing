@@ -47,10 +47,10 @@ const links = [
   .brand__mark { flex: none; overflow: visible; }
   .brand__line {
     stroke-dasharray: 1;
-    animation: ekg-draw 1.2s var(--ease-out-quint) 0.2s backwards;
+    animation: ekg-draw 1.7s var(--ease-out-quint) 0.3s backwards;
   }
-  .brand__pip { transform-box: fill-box; transform-origin: center; animation: ekg-pip 0.4s ease-out 1.1s backwards; }
-  .brand:hover .brand__line { animation: ekg-draw 0.85s var(--ease-out-quint); }
+  .brand__pip { transform-box: fill-box; transform-origin: center; animation: ekg-pip 0.5s ease-out 1.6s backwards; }
+  .brand:hover .brand__line { animation: ekg-draw 1.1s var(--ease-out-quint); }
   .brand:hover .brand__pip { animation: ekg-pip 0.5s ease-out; }
   @keyframes ekg-draw { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
   @keyframes ekg-pip { 0% { transform: scale(0); opacity: 0; } 60% { transform: scale(1.5); opacity: 1; } 100% { transform: scale(1); } }
