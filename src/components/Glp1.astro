@@ -1,28 +1,27 @@
 ---
 const pillars = [
-  { title: 'Dosage', body: 'Find the effective dose for your physiology, not a one-size protocol, so you get the benefit with less of the burden.' },
-  { title: 'Timing', body: 'Align dosing with your metabolic and nutrient picture to support steady results and easier adherence.' },
-  { title: 'Risk mitigation', body: 'Surface the markers that flag muscle loss, nutrient depletion, and other side-effect risks before they become problems.' },
-  { title: 'Cycling off', body: 'Know the signals for when and how to taper, so progress holds instead of rebounding.' },
+  { title: 'Dosage context', body: 'Information about how your physiology may respond, to support a dose conversation with your clinician rather than a default ramp.' },
+  { title: 'Timing context', body: 'Your metabolic and nutrient picture, which can help inform when and how dosing fits your routine.' },
+  { title: 'Side-effect awareness', body: 'Markers often associated with muscle loss and nutrient depletion, so you and your clinician know what to keep an eye on.' },
+  { title: 'Planning ahead', body: 'A clear baseline to revisit over time, useful context for any conversation about adjusting or pausing a course.' },
 ];
 ---
 
 <section class="section glp1" id="glp1">
   <div class="container glp1__grid">
     <div class="glp1__copy">
-      <p class="eyebrow" data-reveal>GLP-1, done with precision</p>
+      <p class="eyebrow" data-reveal>How your data informs GLP-1</p>
       <h2 class="glp1__title" data-reveal style="--reveal-delay: 0.06s">
-        The same data, pointed at your GLP-1 results.
+        Four things your results help you and your clinician get right.
       </h2>
       <p class="prose" data-reveal style="--reveal-delay: 0.12s">
-        GLP-1 medications work. Using them well is another matter, and most people
-        are left guessing on dose, timing, and when to stop. Balance Protocol™ GPS
-        reads your real biochemistry and genetics, then turns it into specific,
-        personal guidance for the variables that actually move your outcome.
+        GLP-1 decisions are usually made on dose, timing, side effects, and what happens
+        when you stop. Your NutraCoreX™ results give those decisions something concrete to
+        stand on: your own biochemistry and genetics, read clearly.
       </p>
       <p class="prose" data-reveal style="--reveal-delay: 0.16s">
-        The result is more of the benefit, less of the risk, and a clear plan for
-        what comes after.
+        We do not prescribe and we do not replace your provider. We give you and your
+        clinician better information to work from.<sup class="glp1__fn"><a href="#disclaimer" aria-label="Read important disclaimer">2</a></sup>
       </p>
     </div>
 
@@ -50,6 +49,8 @@ const pillars = [
     .glp1__copy { position: sticky; top: 96px; }
   }
   .glp1__title { font-size: var(--step-3); margin: var(--sp-3) 0 var(--sp-4); }
+  .glp1__fn { font-size: 0.7em; vertical-align: super; line-height: 0; }
+  .glp1__fn a { color: var(--jade); font-weight: 600; }
 
   .glp1__pillars { display: grid; gap: 1px; background: var(--line-soft); border-radius: var(--radius); overflow: hidden; border: 1px solid var(--line-soft); }
   .pillar {

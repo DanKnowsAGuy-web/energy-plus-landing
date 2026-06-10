@@ -6,10 +6,10 @@ const year = new Date().getFullYear();
   <div class="container">
     <div class="footer__cta panel" data-reveal>
       <div>
-        <h2 class="footer__ctaTitle">Start testing what actually matters.</h2>
-        <p class="prose">Your roadmap begins with knowing how your body operates today.</p>
+        <h2 class="footer__ctaTitle">Start your GLP-1 plan with real information.</h2>
+        <p class="prose">A clear read on your own biology, ready for your next clinician visit.</p>
       </div>
-      <a href="#enroll" class="btn">Get protocol started<span class="arrow" aria-hidden="true">→</span></a>
+      <a href="#enroll" class="btn">Get your protocol<span class="arrow" aria-hidden="true">→</span></a>
     </div>
 
     <div class="footer__main">
@@ -30,16 +30,55 @@ const year = new Date().getFullYear();
 
     <hr class="hr" />
 
-    <p class="footer__disclaimer">
-      NutraCoreX™ provides wellness insights based on real-time functional biomarkers
-      and targeted genetic variations. Health outcomes depend on multiple factors,
-      including lifestyle, diet, and environment. This test is not intended to diagnose,
-      treat, cure, or prevent any disease. Individual results may vary. Consult a
-      healthcare professional before making health decisions.
-    </p>
+    <section class="footer__notes" id="disclaimer" aria-label="Important disclaimers">
+      <h2 class="footer__notesTitle">Important information</h2>
+      <ol class="footer__noteList">
+        <li id="note-1">
+          <span class="footer__noteNum">1.</span>
+          <span>Balance Protocol™ GPS and NutraCoreX™ are wellness and laboratory testing
+          services. They are not a GLP-1 medication, a prescription, or a pharmacy, and they
+          do not guarantee weight loss or any specific health outcome. Results from GLP-1
+          medications vary from person to person and depend on factors including diet,
+          activity, lifestyle, and individual medical history.</span>
+        </li>
+        <li id="note-2">
+          <span class="footer__noteNum">2.</span>
+          <span>This service does not prescribe medication, diagnose conditions, or replace
+          care from a licensed healthcare provider. Test results are intended to give you and
+          your own clinician additional context. All decisions about starting, dosing,
+          continuing, or stopping any medication, including GLP-1 medications, must be made
+          with a qualified healthcare professional. Never start or change a medication based
+          on this report alone.</span>
+        </li>
+        <li id="note-3">
+          <span class="footer__noteNum">3.</span>
+          <span>The $998 price covers one NutraCoreX™ at-home collection kit and its report.
+          Practitioner support is optional and offered without pressure. Ships
+          internationally; additional FedEx charges may apply outside the United States.
+          Results are typically available 10 to 14 business days after the lab receives your
+          samples.</span>
+        </li>
+      </ol>
+
+      <p class="footer__disclaimer">
+        NutraCoreX™ provides wellness insights based on functional biomarkers and targeted
+        genetic variations. Health outcomes depend on multiple factors, including lifestyle,
+        diet, and environment. These statements have not been evaluated by the Food and Drug
+        Administration. This test is not intended to diagnose, treat, cure, or prevent any
+        disease. Individual results may vary. Always consult a qualified healthcare
+        professional before making any health or medication decision. If you experience a
+        medical emergency, call your local emergency number.
+      </p>
+      <p class="footer__disclaimer">
+        Privacy: laboratory analysis is performed by Genova Diagnostics, which does not retain
+        your DNA or personal health data beyond delivering your results. Your information is
+        never sold.
+      </p>
+    </section>
 
     <p class="footer__legal">
       © {year} Balance Protocol™ GPS. All rights reserved. Lab services by Genova Diagnostics.
+      Balance Protocol™, GPS, and NutraCoreX™ are trademarks of their respective owner.
     </p>
   </div>
 </footer>
@@ -66,6 +105,20 @@ const year = new Date().getFullYear();
     .footer__main { grid-template-columns: auto 1fr; align-items: center; gap: var(--sp-6); }
   }
 
-  .footer__disclaimer { color: var(--muted-2); font-size: var(--step--1); line-height: 1.55; max-width: 90ch; margin-top: var(--sp-5); }
+  .footer__notes { margin-top: var(--sp-5); scroll-margin-top: 90px; }
+  .footer__notesTitle {
+    font-family: var(--font-display); font-size: var(--step--1); font-weight: 600;
+    color: var(--muted); letter-spacing: 0.04em; text-transform: uppercase;
+    margin-bottom: var(--sp-3);
+  }
+  .footer__noteList { display: grid; gap: var(--sp-3); max-width: 92ch; }
+  .footer__noteList li {
+    display: grid; grid-template-columns: 1.4rem 1fr; gap: 0.5rem;
+    color: var(--muted-2); font-size: var(--step--1); line-height: 1.55;
+  }
+  .footer__noteList li:target { color: var(--muted); }
+  .footer__noteNum { color: var(--jade); font-weight: 600; font-variant-numeric: tabular-nums; }
+
+  .footer__disclaimer { color: var(--muted-2); font-size: var(--step--1); line-height: 1.55; max-width: 92ch; margin-top: var(--sp-4); }
   .footer__legal { color: var(--muted-2); font-size: var(--step--1); margin-top: var(--sp-4); }
 </style>

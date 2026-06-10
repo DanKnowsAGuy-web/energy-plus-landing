@@ -10,20 +10,21 @@ import BiomarkerField from './BiomarkerField.astro';
 
   <div class="container hero__inner">
     <div class="hero__copy">
-      <p class="eyebrow" data-reveal>Balance Protocol™ GPS · powered by NutraCoreX™</p>
+      <p class="eyebrow" data-reveal>GLP-1, guided by your own biology</p>
 
       <h1 class="hero__title" data-reveal style="--reveal-delay: 0.06s">
-        Begin your health transformation, <span class="hero__accent">from the comfort of home.</span>
+        Get more from GLP-1, <span class="hero__accent">with less of the guesswork.</span><sup class="hero__fn"><a href="#disclaimer" aria-label="Read important disclaimer">1</a></sup>
       </h1>
 
       <p class="lede hero__lede" data-reveal style="--reveal-delay: 0.14s">
-        A clinical-grade at-home lab array reads 150+ functional biomarkers and the genetics
-        that matter, then guides exactly how to act, including how to optimize your GLP-1 use.
-        No fluff, no fear-mongering, no shady upsells.
+        Most people start GLP-1 medications without knowing how their own body will respond.
+        We read 150+ functional biomarkers and the genetics that matter first, then help your
+        clinician personalize your plan, so you can pursue your goals while watching for the
+        side effects people worry about.
       </p>
 
       <div class="hero__actions" data-reveal style="--reveal-delay: 0.22s">
-        <a href="#enroll" class="btn">Enroll now<span class="arrow" aria-hidden="true">→</span></a>
+        <a href="#enroll" class="btn">Get your protocol<span class="arrow" aria-hidden="true">→</span></a>
         <a href="#how" class="btn btn-ghost">See how it works</a>
       </div>
 
@@ -69,6 +70,9 @@ import BiomarkerField from './BiomarkerField.astro';
     max-width: 18ch;
   }
   .hero__accent { color: var(--jade); }
+  .hero__fn { font-size: 0.32em; vertical-align: super; line-height: 0; font-family: var(--font-body); }
+  .hero__fn a { color: var(--muted-2); font-weight: 600; }
+  .hero__fn a:hover { color: var(--jade); }
   .hero__lede { margin-top: var(--sp-4); max-width: 50ch; }
   .hero__actions {
     margin-top: var(--sp-5);
