@@ -2,7 +2,10 @@
    Everything here enhances a page that already works without it. */
 (() => {
   "use strict";
-  const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  /* ?static=1 renders the finished stills with no choreography: QA, screenshots,
+     and archival captures see the page exactly as it rests. */
+  const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches
+    || new URLSearchParams(location.search).has("static");
 
   /* ---------- header: the mark alone over the hero ---------- */
   const head = document.getElementById("head");
@@ -18,7 +21,7 @@
   if (!reduced && "IntersectionObserver" in window) {
     requestAnimationFrame(() => requestAnimationFrame(() => {
       document.documentElement.classList.add("anim-ready");
-      const targets = document.querySelectorAll(".beat > .wrap, .close__in");
+      const targets = document.querySelectorAll(".beat > .wrap, .close__in, .fig, .readout, .floor, .record, .monument");
       const io = new IntersectionObserver((entries) => {
         for (const e of entries) if (e.isIntersecting) { e.target.classList.add("is-in"); io.unobserve(e.target); }
       }, { rootMargin: "0px 0px -8% 0px", threshold: 0.05 });
