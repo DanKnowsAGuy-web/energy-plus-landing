@@ -254,6 +254,16 @@ sup.fn a { color: inherit; text-decoration: none; }
 .site-head.is-clear .site-nav a:not(.pill) { color: oklch(0.88 0.006 215); }
 .site-head.is-clear .site-nav a:not(.pill):hover { color: white; }
 .site-head.is-clear .pill { background: oklch(0.97 0.003 210); color: var(--cinema); }
+/* Over the hero the header carries the mark alone: nav and CTA arrive with the
+   light page below, so the first fold offers exactly one action. */
+.site-nav a:not(.pill) { transition: opacity 350ms var(--ease-out), transform 350ms var(--ease-out), color 200ms ease, visibility 0s; }
+.site-nav .pill { transition: opacity 350ms var(--ease-out), background 250ms var(--ease-out), box-shadow 250ms var(--ease-out), visibility 0s; }
+.site-head.is-clear .site-nav a:not(.pill),
+.site-head.is-clear .site-nav .pill {
+  opacity: 0; visibility: hidden; pointer-events: none;
+  transition-delay: 0s, 0s, 0s, 350ms;
+}
+.site-head.is-clear .site-nav a:not(.pill) { transform: translateY(-6px); }
 
 /* film modal */
 .film-modal { border: 0; padding: 0; background: transparent; max-width: min(1080px, 92vw); width: 100%; }
@@ -301,21 +311,35 @@ sup.fn a { color: inherit; text-decoration: none; }
 /* ---------- disclosure (show me how) ---------- */
 details.gate { border-top: 1px solid var(--line); }
 details.gate:last-of-type { border-bottom: 1px solid var(--line); }
+/* The summary must read as a control at a glance: a circled plus leads the
+   label, the whole row responds to hover, and the plus turns to a close. */
 details.gate > summary {
-  list-style: none; display: flex; align-items: baseline; justify-content: space-between; gap: 1rem;
-  padding: 1.1rem 0.2rem; cursor: pointer; color: var(--ink); font-weight: 500;
+  list-style: none; display: flex; align-items: center; gap: 0.9rem;
+  padding: 1.05rem 0.6rem; margin-inline: -0.6rem; cursor: pointer;
+  color: var(--ink); font-weight: 500; border-radius: 10px;
+  transition: background 250ms var(--ease-out);
 }
+details.gate > summary:hover { background: var(--surface); }
 details.gate > summary::-webkit-details-marker { display: none; }
 details.gate > summary .plus {
-  font-family: var(--font-mono); color: var(--verd-ink); flex-shrink: 0;
-  transition: transform 300ms var(--ease-out); display: inline-block;
+  order: -1; flex: none; display: inline-grid; place-items: center;
+  width: 1.9rem; height: 1.9rem; border-radius: 50%;
+  border: 1px solid color-mix(in srgb, var(--verd) 45%, transparent);
+  background: var(--verd-wash);
+  font-family: var(--font-mono); font-size: 1rem; line-height: 1; color: var(--verd-ink);
+  transition: transform 300ms var(--ease-out), border-color 250ms var(--ease-out);
 }
+details.gate > summary:hover .plus { border-color: var(--verd); }
 details.gate[open] > summary .plus { transform: rotate(45deg); }
-details.gate .gate__body { padding: 0.2rem 0.2rem 1.5rem; }
+details.gate .gate__body { padding: 0.4rem 0.2rem 1.6rem; }
 details.gate .gate__body > * + * { margin-top: var(--space-2); }
 .cinema details.gate, .cinema details.gate:last-of-type { border-color: var(--cinema-line); }
 .cinema details.gate > summary { color: var(--cinema-ink); }
-.cinema details.gate > summary .plus { color: oklch(0.72 0.08 188); }
+.cinema details.gate > summary:hover { background: var(--cinema-2); }
+.cinema details.gate > summary .plus {
+  color: oklch(0.78 0.08 188); background: transparent;
+  border-color: color-mix(in srgb, oklch(0.72 0.08 188) 45%, transparent);
+}
 
 /* ---------- authority strip ---------- */
 .authority { display: grid; gap: 0; margin-top: var(--space-4); border-top: 1px solid var(--line); }
@@ -521,19 +545,6 @@ details.gate .gate__body > * + * { margin-top: var(--space-2); }
 .disclosures__body p { margin-top: 0.4rem; }
 .foot-meta { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem; margin-top: var(--space-4); color: var(--muted); font-family: var(--font-mono); font-size: 0.78rem; }
 
-/* ---------- sticky cta ---------- */
-.sticky-cta {
-  position: fixed; inset-inline: 0; bottom: 0; z-index: var(--z-sticky);
-  background: color-mix(in oklab, var(--bg) 90%, transparent); backdrop-filter: blur(14px);
-  border-top: 1px solid var(--line);
-  transform: translateY(110%); transition: transform 500ms var(--ease-out);
-}
-.sticky-cta.is-in { transform: translateY(0); }
-.sticky-cta__in { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding-block: 0.7rem; }
-.sticky-cta__label { font-size: var(--step--1); color: var(--body); }
-@media (max-width: 560px) { .sticky-cta__label { display: none; } .sticky-cta__in { justify-content: center; } }
-.sticky-cta__close { background: none; border: 0; color: var(--muted); font-size: 1.1rem; padding: 0.4rem; }
-
 /* Hero initial hidden states are owned by GSAP (choreo.js), not CSS, so the
    same transform system that hides them also reveals them. See choreo.js. */
 
@@ -547,7 +558,6 @@ details.gate .gate__body > * + * { margin-top: var(--space-2); }
 @media (prefers-reduced-motion: reduce) {
   .anim-ready .reveal, .anim-ready .reveal--mask { opacity: 1; transform: none; clip-path: none; transition: none; }
   .pill, .pill .arrow { transition: none; }
-  .sticky-cta { transition: none; }
   * { animation-duration: 0.001s !important; animation-iteration-count: 1 !important; }
 }
 
@@ -938,7 +948,7 @@ html.proof-sheet-open { overflow: hidden; }
 
 /* ---------- print ---------- */
 @media print {
-  .site-head, .sticky-cta, .hero__frame, .calc-frame { display: none; }
+  .site-head, .hero__frame, .calc-frame { display: none; }
   .proof-sheet { position: static; opacity: 1; }
   .proof-wall { display: none; }
 }

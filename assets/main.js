@@ -180,21 +180,6 @@
   else addEventListener("load", () => setTimeout(ensureCal, 900));
   ["pointerdown", "keydown", "scroll"].forEach((ev) => addEventListener(ev, ensureCal, { once: true, passive: true }));
 
-  /* ---------- sticky CTA ---------- */
-  const sticky = document.getElementById("sticky-cta");
-  const heroCta = document.getElementById("hero-cta");
-  if (sticky && heroCta && "IntersectionObserver" in window && !sessionStorage.getItem("cta-dismissed")) {
-    const io = new IntersectionObserver(([e]) => {
-      sticky.classList.toggle("is-in", !e.isIntersecting && e.boundingClientRect.top < 0);
-    }, { threshold: 0 });
-    io.observe(heroCta);
-    sticky.querySelector(".sticky-cta__close").addEventListener("click", () => {
-      sticky.classList.remove("is-in");
-      sessionStorage.setItem("cta-dismissed", "1");
-      io.disconnect();
-    });
-  }
-
   /* ---------- print: open all disclosures so nothing prints collapsed ---------- */
   addEventListener("beforeprint", () => {
     document.querySelectorAll("details:not([open])").forEach((d) => {
