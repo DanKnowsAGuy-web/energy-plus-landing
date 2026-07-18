@@ -21,7 +21,7 @@
   if (!reduced && "IntersectionObserver" in window) {
     requestAnimationFrame(() => requestAnimationFrame(() => {
       document.documentElement.classList.add("anim-ready");
-      const targets = document.querySelectorAll(".beat > .wrap, .close__in, .fig, .readout, .floor, .record, .monument");
+      const targets = document.querySelectorAll(".beat > .wrap, .close__in, .fig, .readout, .floor, .record, .monument, .kit");
       const io = new IntersectionObserver((entries) => {
         for (const e of entries) if (e.isIntersecting) { e.target.classList.add("is-in"); io.unobserve(e.target); }
       }, { rootMargin: "0px 0px -8% 0px", threshold: 0.05 });
@@ -257,28 +257,18 @@
     sheet.addEventListener("click", (e) => { if (e.target === sheet) sheet.close(); });
   }
 
-  /* ---------- the film ---------- */
-  const filmDialog = document.getElementById("film-dialog");
-  const filmFrame = document.getElementById("film-frame");
-  const filmClose = document.getElementById("film-close");
-  document.querySelectorAll("[data-film]").forEach((btn) => {
-    btn.addEventListener("click", () => {
-      if (!filmDialog || !filmFrame) return;
-      if (!filmFrame.firstChild) {
-        const f = document.createElement("iframe");
-        f.src = "https://fast.wistia.net/embed/iframe/n765rk6v4z?autoPlay=true&playbar=true&dnt=true";
-        f.allow = "autoplay; fullscreen";
-        f.title = "Energy Plus: how we cut your energy bill, 6 minutes";
-        filmFrame.appendChild(f);
-      }
-      filmDialog.showModal();
+  /* ---------- the film: the facade becomes the player, in place ---------- */
+  const filmFacade = document.querySelector("[data-film-inline]");
+  if (filmFacade) {
+    filmFacade.addEventListener("click", () => {
+      const holder = filmFacade.closest(".film-inline");
+      const f = document.createElement("iframe");
+      f.src = "https://fast.wistia.net/embed/iframe/n765rk6v4z?autoPlay=true&playbar=true&dnt=true";
+      f.allow = "autoplay; fullscreen";
+      f.title = "Energy Plus: how we cut your energy bill, 6 minutes";
+      holder.classList.add("is-playing");
+      holder.replaceChildren(f);
     });
-  });
-  if (filmDialog && filmClose) {
-    const stop = () => { if (filmFrame) filmFrame.replaceChildren(); };
-    filmClose.addEventListener("click", () => filmDialog.close());
-    filmDialog.addEventListener("close", stop);
-    filmDialog.addEventListener("click", (e) => { if (e.target === filmDialog) filmDialog.close(); });
   }
 
   /* ---------- print: nothing ships collapsed ---------- */

@@ -335,11 +335,48 @@ dialog::backdrop { background: oklch(0.12 0.006 260 / 0.8); }
 .rec-group .b { color: var(--body-c); }
 @media (max-width: 640px) { .rec-group li { grid-template-columns: 5.5rem 1fr; } .rec-group .b { grid-column: 2; } }
 
-dialog.film { background: transparent; width: min(1080px, 94vw); }
-dialog.film .sheet__close { position: absolute; top: -3rem; right: 0; background: transparent; color: white; border-color: oklch(0.55 0.006 260); }
-dialog.film .sheet__close:hover { background: white; color: var(--graphite); }
-.film__frame { aspect-ratio: 16 / 9; background: var(--graphite); border-radius: 4px; overflow: hidden; }
-.film__frame iframe { width: 100%; height: 100%; border: 0; display: block; }
+/* the film, inline: a plate that becomes the player in place */
+.film-inline {
+  margin-top: clamp(1.6rem, 3vw, 2.4rem);
+  border: 1px solid var(--ink); padding: clamp(0.5rem, 1.2vw, 0.8rem); background: var(--paper);
+  box-shadow: 0 1px 2px oklch(0.17 0.005 270 / 0.05), 0 22px 48px -34px oklch(0.17 0.005 270 / 0.45);
+}
+.film-inline__facade {
+  position: relative; display: block; width: 100%; aspect-ratio: 16 / 9;
+  padding: 0; border: 0; background: var(--graphite); overflow: hidden; cursor: pointer;
+}
+.film-inline__facade img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(1) contrast(1.06) brightness(0.85); transition: transform 700ms var(--ease); }
+.film-inline__facade:hover img { transform: scale(1.02); }
+.film-inline__scrim { position: absolute; inset: 0; background: oklch(0.15 0.006 260 / 0.45); }
+.film-inline__play {
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+  display: grid; place-items: center; width: 4.4rem; height: 4.4rem; border-radius: 50%;
+  background: white; color: var(--graphite); transition: transform 300ms var(--ease);
+}
+.film-inline__play svg { width: 1.7rem; height: 1.7rem; margin-left: 0.2rem; }
+.film-inline__facade:hover .film-inline__play { transform: translate(-50%, -50%) scale(1.06); }
+.film-inline__meta {
+  position: absolute; left: 1rem; bottom: 0.85rem;
+  font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: oklch(0.85 0.005 260);
+}
+.film-inline iframe { display: block; width: 100%; aspect-ratio: 16 / 9; border: 0; background: var(--graphite); }
+
+/* the kit: phase one's four systems, set as catalog plates */
+.kit { list-style: none; margin: clamp(2rem, 4.5vw, 3.2rem) 0 0; padding: 0; display: grid; gap: clamp(1.8rem, 4vw, 2.6rem) clamp(1.5rem, 3vw, 2.2rem); }
+@media (min-width: 820px) { .kit { grid-template-columns: 1fr 1fr; } }
+.kit li { border-top: 1px solid var(--graphite-rule); padding-top: clamp(1.1rem, 2.5vw, 1.5rem); }
+.kit__img { border: 1px solid var(--graphite-rule); padding: 0.45rem; background: oklch(0.2 0.008 260); }
+.kit__img img { width: 100%; aspect-ratio: 3 / 2; object-fit: cover; filter: grayscale(1) contrast(1.05) brightness(0.92); display: block; }
+.kit__fit { margin-top: 0.9rem; font-family: var(--font-mono); font-size: 0.7rem; font-weight: 500; letter-spacing: 0.07em; text-transform: uppercase; color: oklch(0.62 0.006 260); }
+.kit h3 { margin-top: 0.35rem; font-size: var(--step-1); color: var(--panel-ink); }
+.kit li > p:not(.kit__fit):not(.kit__fig) { margin-top: 0.5rem; font-size: var(--step--1); }
+.kit__fig { margin-top: 0.7rem; font-family: var(--font-mono); font-weight: 500; font-size: var(--step-0); color: var(--amber); }
+.kit__more { margin-top: clamp(1.8rem, 4vw, 2.6rem); border-top: 1px solid var(--graphite-rule); padding-top: clamp(1.1rem, 2.5vw, 1.5rem); font-size: var(--step--1); }
+.anim-ready .kit li { opacity: 0; transform: translateY(14px); transition: opacity 600ms var(--ease), transform 600ms var(--ease); }
+.anim-ready .kit.is-in li { opacity: 1; transform: none; }
+.anim-ready .kit.is-in li:nth-child(2) { transition-delay: 110ms; }
+.anim-ready .kit.is-in li:nth-child(3) { transition-delay: 220ms; }
+.anim-ready .kit.is-in li:nth-child(4) { transition-delay: 330ms; }
 
 /* ---------- footer: the colophon ---------- */
 .foot { border-top: 2px solid var(--ink); padding-block: clamp(3rem, 6vw, 5rem); }

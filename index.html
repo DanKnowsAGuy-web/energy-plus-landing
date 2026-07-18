@@ -113,7 +113,7 @@
           </div>
         </div>
       </details>
-      <p class="quiet">Prefer to watch? <button type="button" class="textlink" data-film>The whole method in a 6-minute film</button></p>
+      <p class="quiet">Prefer to watch? <a class="textlink" href="#film">The whole method in a 6-minute film, below</a></p>
     </div>
   </section>
 
@@ -178,46 +178,56 @@
   <section class="beat beat--dark" id="money" aria-labelledby="money-h">
     <div class="wrap beat__narrow">
       <h2 id="money-h">Heating and cooling can be half your bill. We start there.</h2>
-      <p class="lead lead--dark">Two fixes on the units you already own: an optimizer that stops the compressor the moment it stops doing useful work, and a one-time coil treatment that brings back the performance the years took.</p>
-      <p class="readout">20&ndash;55%<small><strong>off the HVAC portion of your bill,</strong> and we quote the floor, not the peak.<sup class="fn"><a href="#notes" aria-label="See note 1">1</a></sup></small></p>
-      <figure class="fig" aria-label="Cutaway drawing of a rooftop HVAC unit showing the supply fan, the compressor where the optimizer acts, and the coils the treatment restores">
-        <svg viewBox="0 0 640 320" role="img" aria-hidden="true">
-          <line class="d soft" pathLength="1" x1="36" y1="272" x2="604" y2="272" style="--d:0"/>
-          <path class="d soft" pathLength="1" d="M116 250 v22 M496 250 v22" style="--d:1"/>
-          <rect class="d" pathLength="1" x="70" y="70" width="470" height="180" rx="6" style="--d:1"/>
-          <line class="d soft" pathLength="1" x1="262" y1="70" x2="262" y2="250" style="--d:2"/>
-          <circle class="d" pathLength="1" cx="170" cy="160" r="46" style="--d:2"/>
-          <path class="d soft" pathLength="1" d="M170 118 A42 42 0 0 1 206 180 M170 202 A42 42 0 0 1 134 140 M212 160 A42 42 0 0 1 148 122" style="--d:3"/>
-          <circle class="d" pathLength="1" cx="170" cy="160" r="5" style="--d:3"/>
-          <path class="d" pathLength="1" d="M302 232 v-52 a36 22 0 0 1 72 0 v52 z" style="--d:3"/>
-          <path class="d soft" pathLength="1" d="M312 196 h52 M312 212 h52" style="--d:4"/>
-          <path class="d soft" pathLength="1" d="M436 232 L466 92 M454 232 L484 92 M472 232 L502 92 M490 232 L520 92 M508 232 L538 92" style="--d:4"/>
-          <path class="dash fade" d="M600 160 h-46"/>
-          <path class="dash fade" d="M428 160 h-40"/>
-          <path class="d soft" pathLength="1" d="M382 160 l-8 -5 v10 z" style="--d:5"/>
-          <path class="d soft" pathLength="1" d="M150 52 L166 108" style="--d:5"/>
-          <path class="d soft" pathLength="1" d="M338 288 L338 240" style="--d:5"/>
-          <path class="d soft" pathLength="1" d="M487 52 L487 86" style="--d:5"/>
-          <text class="lbl" x="142" y="42">the supply fan</text>
-          <text class="lbl lbl--ink" x="338" y="304" text-anchor="middle">the compressor &middot; the optimizer acts here</text>
-          <text class="lbl lbl--ink" x="487" y="42" text-anchor="middle">the coils &middot; the treatment acts here</text>
-          <text class="lbl soft-t" x="604" y="294" text-anchor="end">a rooftop unit you already own</text>
-        </svg>
-        <figcaption>Fig. 03 &middot; Where phase one works</figcaption>
-      </figure>
-      <details class="gate">
-        <summary><span class="plus" aria-hidden="true">+</span>See what phase one installs</summary>
-        <div class="gate__body">
-          <p>The optimizer learns how your building actually runs and shuts the compressor off when the coils are saturated and the air can't get any colder, while the fan keeps delivering the stored cold. The coil treatment lifts off years of baked-on compressor oil, an insulating film that stops coils from moving heat; the older the unit, the more there is to bring back. Where the building justifies it, solar thermal assist or a roof barrier joins the prescription. Typically an afternoon of work per unit, nothing replaced.<sup class="fn"><a href="#notes" aria-label="See notes 1 and 12">1, 12</a></sup></p>
-        </div>
-      </details>
-      <details class="gate">
-        <summary><span class="plus" aria-hidden="true">+</span>See what your data unlocks later</summary>
-        <div class="gate__body">
-          <p>Phase one leaves behind two weeks of per-unit metering. That data, not a brochure, is what honestly sizes the deeper fixes: power conditioning, demand storage, smart controls, and for cold-heavy buildings like supermarkets, the refrigeration rack itself. That is the path past 30%, opened by your own numbers.<sup class="fn"><a href="#notes" aria-label="See note 1">1</a></sup> When a unit truly reaches end of life, the frontier-class replacement (IEER 31, COP 6) drops into the same footprint.</p>
-        </div>
-      </details>
+      <p class="lead lead--dark">Half a bill deserves a whole prescription. <strong>The Exam matches the fix to the equipment you actually run:</strong> what's right for a simple on/off compressor is wrong for an inverter system, and some heat should never reach your HVAC at all.</p>
+      <p class="readout">20&ndash;55%<small><strong>off the HVAC portion of your bill, combined,</strong> and we quote the floor, not the peak.<sup class="fn"><a href="#notes" aria-label="See note 1">1</a></sup></small></p>
+      <ul class="kit" aria-label="The four phase-one systems">
+        <li>
+          <div class="kit__img"><img src="assets/img/kit-optimizer.png" alt="Illustrative: a compact optimizer control mounted beside a rooftop unit's compressor panel" loading="lazy"></div>
+          <p class="kit__fit">For simple on/off compressors &middot; the most common systems</p>
+          <h3>The HVAC optimizer</h3>
+          <p>Learns how your building runs and shuts the compressor off the moment it stops doing useful work, while the fan keeps delivering the stored cold.</p>
+          <p class="kit__fig">15&ndash;30% less HVAC energy<sup class="fn"><a href="#notes" aria-label="See note 1">1</a></sup></p>
+        </li>
+        <li>
+          <div class="kit__img"><img src="assets/img/kit-coil.png" alt="Illustrative: commercial condenser coil fins, restored bright on one side and oil-darkened on the other" loading="lazy"></div>
+          <p class="kit__fit">For aging units &middot; any system type</p>
+          <h3>The coil treatment</h3>
+          <p>Lifts off the years of baked-on compressor oil that stop coils from moving heat. One application, for the life of the unit.</p>
+          <p class="kit__fig">Recovers up to 36% of lost performance<sup class="fn"><a href="#notes" aria-label="See notes 1 and 12">1, 12</a></sup></p>
+        </li>
+        <li>
+          <div class="kit__img"><img src="assets/img/kit-solar.png" alt="Illustrative: solar thermal collectors mounted on a commercial flat roof near rooftop HVAC units" loading="lazy"></div>
+          <p class="kit__fit">For inverter-type systems</p>
+          <h3>Solar thermal</h3>
+          <p>Not a solar panel: it captures the sun's heat directly and puts it to work for the compressor, changing where the energy comes from.</p>
+          <p class="kit__fig">30&ndash;50% more efficient system<sup class="fn"><a href="#notes" aria-label="See note 1">1</a></sup></p>
+        </li>
+        <li>
+          <div class="kit__img"><img src="assets/img/kit-barrier.png" alt="Illustrative: a commercial flat roof half-coated in a bright reflective thermal barrier" loading="lazy"></div>
+          <p class="kit__fit">For the building itself</p>
+          <h3>The thermal barrier</h3>
+          <p>Sprayed or membrane-applied where the diagnosis shows it pays, so the heat never reaches the equipment that would have fought it.</p>
+          <p class="kit__fig">Blocks 10+ degrees before it gets in<sup class="fn"><a href="#notes" aria-label="See note 1">1</a></sup></p>
+        </li>
+      </ul>
+      <p class="kit__more">When a unit truly reaches end of life, the frontier-class replacement drops into the same footprint: IEER 31, COP 6, half or more off heating and cooling energy.<sup class="fn"><a href="#notes" aria-label="See note 1">1</a></sup> And phase one's own metering data is what sizes the deeper fixes later, conditioning, storage, controls, refrigeration: <strong>the path past 30%, opened by your numbers, never by a brochure.</strong><sup class="fn"><a href="#notes" aria-label="See note 1">1</a></sup></p>
       <p class="quiet quiet--dark"><a href="how-it-works.html">How each fix works, in plain language &rarr;</a></p>
+    </div>
+  </section>
+
+  <!-- THE FILM · the deep weeds, told plainly -->
+  <section class="beat beat--rule" id="film" aria-labelledby="film-h">
+    <div class="wrap beat__narrow">
+      <h2 id="film-h">Watch the whole method in six minutes.</h2>
+      <p class="lead">How we find the waste, prove it on your own equipment, and install only what pays for itself. <strong>The deep weeds live here, told plainly.</strong></p>
+      <div class="film-inline">
+        <button type="button" class="film-inline__facade" data-film-inline aria-label="Play the six-minute Energy Plus film">
+          <img src="assets/img/hero-building.png" alt="" loading="lazy">
+          <span class="film-inline__scrim" aria-hidden="true"></span>
+          <span class="film-inline__play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5z"/></svg></span>
+          <span class="film-inline__meta" aria-hidden="true">The film &middot; 6 min</span>
+        </button>
+      </div>
     </div>
   </section>
 
@@ -413,11 +423,6 @@
     <noscript><p>The full record requires JavaScript. The four results above are representative; documentation for all 95 is available on request.</p></noscript>
   </div>
   <p class="sheet__note">Every result was measured at the named site under its own conditions; it is not a prediction for your building. Regional programs aggregate hundreds of additional sites into the 200-plus total.<sup class="fn"><a href="#notes">1, 9</a></sup></p>
-</dialog>
-
-<dialog class="film" id="film-dialog" aria-label="Energy Plus film, 6 minutes">
-  <button type="button" class="sheet__close" id="film-close" aria-label="Close film">&times;</button>
-  <div class="film__frame" id="film-frame"></div>
 </dialog>
 
 <script src="assets/site.js" defer></script>
