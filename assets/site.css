@@ -240,6 +240,20 @@ sup.fn a { color: inherit; text-decoration: none; }
 .plate img { width: 100%; filter: grayscale(1) contrast(1.05); aspect-ratio: 21 / 9; object-fit: cover; }
 .plate figcaption { margin-top: 0.6rem; font-family: var(--font-mono); font-size: 0.72rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--faint); }
 
+/* the gate: trade the worksheet for an address, stated plainly */
+.gatekeeper {
+  margin-top: clamp(1.6rem, 3vw, 2.4rem); padding: clamp(1.4rem, 3vw, 2.1rem);
+  border: 1px solid var(--ink); border-radius: 2px; background: var(--paper-2);
+}
+.gatekeeper__label { font-family: var(--font-mono); font-weight: 600; font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink); }
+.gatekeeper__copy { margin-top: 0.7rem; font-size: var(--step--1); }
+.gatekeeper form { display: flex; flex-wrap: wrap; gap: 0.7rem; margin-top: 1.1rem; }
+.gatekeeper input[type="email"] {
+  flex: 1 1 16rem; padding: 0.8rem 1rem; font: inherit; font-size: var(--step--1);
+  border: 1.5px solid var(--ink); border-radius: 4px; background: var(--paper); color: var(--ink);
+}
+.gatekeeper input[type="email"]::placeholder { color: var(--faint); }
+
 /* calculator */
 .calc { position: relative; margin-top: clamp(1.6rem, 3vw, 2.4rem); border: 1px solid var(--ink); border-radius: 2px; overflow: hidden; background: var(--paper-2); padding: clamp(0.5rem, 1.2vw, 0.8rem); }
 .calc__loading { position: absolute; inset: 0; display: grid; place-items: center; font-family: var(--font-mono); font-size: 0.78rem; color: var(--faint); }

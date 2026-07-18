@@ -72,6 +72,42 @@
   else addEventListener("load", () => setTimeout(ensureCal, 800));
   ["pointerdown", "keydown", "scroll"].forEach((ev) => addEventListener(ev, ensureCal, { once: true, passive: true }));
 
+  /* ---------- the gate: estimator + worksheet for an email ----------
+     Progressive: without JS the estimator is simply open. With JS, the gate
+     shows until an email is given once; a capture-service outage never blocks
+     the visitor (we unlock regardless and fail quietly). */
+  const gateEl = document.getElementById("calc-gate");
+  const gateCalc = document.querySelector("[data-calc]");
+  const gateDl = document.getElementById("gate-download");
+  if (gateEl && gateCalc) {
+    const unlock = () => { gateEl.hidden = true; gateCalc.hidden = false; };
+    if (localStorage.getItem("ep-unlocked")) {
+      unlock();
+    } else {
+      gateCalc.hidden = true;
+      gateEl.hidden = false;
+      const form = document.getElementById("gate-form");
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const input = form.querySelector('input[type="email"]');
+        const email = input.value.trim();
+        if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { input.focus(); return; }
+        const btn = form.querySelector("button");
+        btn.disabled = true; btn.textContent = "Unlocking…";
+        const finish = () => {
+          try { localStorage.setItem("ep-unlocked", "1"); } catch (err) {}
+          unlock();
+          if (gateDl) gateDl.hidden = false;
+        };
+        fetch("https://formsubmit.co/ajax/dan@yourenergyplus.com", {
+          method: "POST",
+          headers: { "Content-Type": "application/json", "Accept": "application/json" },
+          body: JSON.stringify({ email, _subject: "Estimator unlock (new lead)", page: "energy-plus-landing", _template: "table" }),
+        }).then(finish, finish);
+      });
+    }
+  }
+
   /* ---------- calculator: height messages + loading state ---------- */
   const calcFrame = document.getElementById("calc-frame");
   const calcWrap = document.querySelector("[data-calc]");
