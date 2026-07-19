@@ -5,8 +5,9 @@
    one meaning: a verified, metered value. Nothing moves unless it says something.
 
    RE-SKIN CONTRACT (hotel / supermarket verticals): override only
-   (1) the tokens below, (2) assets/img/hero-building.png, (3) copy slots.
-   Layout, motion, and disclosure wiring do not fork. */
+   (1) the tokens below, (2) the three photo slots (assets/img/film-cover.jpg,
+   stakes-roof.jpg, close-dusk.jpg), (3) copy slots, including the hero bill's
+   line items. Layout, motion, and disclosure wiring do not fork. */
 
 :root {
   /* report paper: true zero-chroma, never cream */
@@ -145,7 +146,10 @@ sup.fn a { color: inherit; text-decoration: none; }
 
 /* ---------- instrument moments: hero + close ---------- */
 .hero, .close { position: relative; color: var(--panel-ink); overflow: clip; background: var(--graphite); }
-.hero { min-height: 90svh; display: grid; align-items: center; }
+.hero {
+  min-height: 92svh; display: grid; align-items: center;
+  background: radial-gradient(120% 130% at 16% -12%, var(--graphite-2), var(--graphite) 62%);
+}
 .close { padding-block: var(--beat-pad); }
 .hero__media, .close__media { position: absolute; inset: 0; }
 .hero__media img, .close__media img {
@@ -165,6 +169,34 @@ sup.fn a { color: inherit; text-decoration: none; }
 }
 .close h2 { color: white; font-size: var(--step-3); font-weight: 800; font-stretch: 118%; max-width: 18ch; }
 .hero__lede { margin-top: 1.5rem; font-size: var(--step-1); line-height: 1.5; color: var(--panel-body); max-width: 42ch; }
+
+/* the exhibit: a specimen bill under the pen */
+.hero__grid { display: grid; gap: clamp(3rem, 6vw, 4.5rem); align-items: center; }
+@media (min-width: 980px) { .hero__grid { grid-template-columns: 11fr 9fr; } }
+.hero__grid > * { min-width: 0; }
+.bill { margin: 0; width: 100%; max-width: min(26.5rem, 100%); justify-self: center; }
+@media (min-width: 980px) { .bill { justify-self: end; } }
+.bill svg {
+  width: 100%; height: auto; display: block; transform: rotate(1.7deg);
+  filter: drop-shadow(0 34px 54px oklch(0 0 0 / 0.5)) drop-shadow(0 5px 12px oklch(0 0 0 / 0.35));
+}
+.bill .paper { fill: var(--paper); stroke: oklch(0.86 0 0); stroke-width: 0.5; }
+.bill .tag { fill: none; stroke: var(--rule); stroke-width: 1; }
+.bill .bt { font-family: var(--font-sans); font-size: 13px; font-weight: 660; letter-spacing: 0.01em; fill: var(--ink); }
+.bill .row { font-family: var(--font-sans); font-size: 11.5px; fill: var(--body-c); }
+.bill .amt { font-family: var(--font-mono); font-size: 11.5px; font-weight: 500; fill: var(--ink); font-variant-numeric: tabular-nums; }
+.bill .amt--total { font-size: 16px; font-weight: 620; }
+.bill .meta { font-family: var(--font-mono); font-size: 8.5px; font-weight: 500; letter-spacing: 0.08em; fill: var(--faint); }
+.bill .rule { stroke: var(--rule); stroke-width: 1; }
+.bill .rule--ink { stroke: var(--ink); stroke-width: 2; }
+.bill .fine { fill: var(--rule); opacity: 0.55; }
+.bill .mk { fill: none; stroke: var(--amber-ink); stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+.bill .mk-t { font-family: var(--font-mono); font-size: 9.5px; font-weight: 600; letter-spacing: 0.05em; fill: var(--amber-ink); }
+.bill__cap {
+  margin-top: 0.9rem; font-family: var(--font-mono); font-size: 0.7rem; font-weight: 500;
+  letter-spacing: 0.08em; text-transform: uppercase; color: oklch(0.62 0.006 260);
+}
+.bill__cap sup.fn { color: oklch(0.55 0.006 260); }
 
 /* ---------- beats: pages of the report ---------- */
 .beat { padding-block: var(--beat-pad); }
@@ -188,6 +220,33 @@ sup.fn a { color: inherit; text-decoration: none; }
 }
 .monument__unit { font-size: 0.4em; font-weight: 600; font-stretch: 100%; color: var(--faint); }
 
+/* the listen test: two instruments, one difference */
+.listen { margin-top: clamp(1.8rem, 4vw, 2.6rem); display: grid; gap: 1.1rem; }
+@media (min-width: 760px) { .listen { grid-template-columns: 1fr 1fr; gap: 1.4rem; } }
+.listen__card {
+  display: grid; grid-template-columns: auto 1fr; gap: 1rem 1.15rem; align-items: center;
+  background: var(--graphite); border-radius: 4px; padding: 1.3rem 1.4rem 1.35rem;
+  color: var(--panel-body);
+  box-shadow: 0 1px 2px oklch(0.17 0.005 270 / 0.05), 0 22px 48px -34px oklch(0.17 0.005 270 / 0.5);
+}
+.listen__card h3 { color: var(--panel-ink); font-size: var(--step-0); }
+.listen__info p { margin-top: 0.3rem; font-size: var(--step--1); line-height: 1.45; }
+.listen__btn {
+  width: 3.3rem; height: 3.3rem; border-radius: 50%;
+  border: 1.5px solid var(--panel-ink); background: transparent; color: var(--panel-ink);
+  display: grid; place-items: center;
+  transition: background 220ms var(--ease), color 220ms var(--ease), transform 220ms var(--ease);
+}
+.listen__btn:hover { background: var(--panel-ink); color: var(--graphite); transform: scale(1.04); }
+.listen__btn svg { width: 1.15rem; height: 1.15rem; grid-area: 1 / 1; }
+.listen__btn .i-stop { display: none; }
+.listen__btn[aria-pressed="true"] { background: var(--panel-ink); color: var(--graphite); }
+.listen__btn[aria-pressed="true"] .i-play { display: none; }
+.listen__btn[aria-pressed="true"] .i-stop { display: block; }
+.listen__meter { grid-column: 1 / -1; display: flex; gap: 3px; height: 1.6rem; align-items: flex-end; }
+.listen__meter i { flex: 1; height: 12%; background: var(--graphite-rule); transition: height 90ms linear, background 300ms var(--ease); }
+.listen__card.is-live .listen__meter i { background: var(--panel-ink); }
+
 /* the plan: the page's only numbered sequence, set like a form */
 .steps { list-style: none; margin: clamp(1.8rem, 4vw, 3rem) 0 0; padding: 0; counter-reset: step; }
 .steps > li { counter-increment: step; position: relative; padding: 1.5rem 0 1.5rem 4.4rem; border-top: 1px solid var(--rule); }
@@ -204,6 +263,7 @@ sup.fn a { color: inherit; text-decoration: none; }
   border: 2px solid var(--amber-ink); outline: 1px solid var(--amber-ink); outline-offset: 4px;
   border-radius: 2px; background: var(--amber-wash);
   box-shadow: 0 1px 2px oklch(0.17 0.005 270 / 0.05), 0 20px 44px -32px oklch(0.17 0.005 270 / 0.45);
+  transform: rotate(-0.5deg); /* a stamp never lands perfectly straight */
 }
 .floor h3 { font-family: var(--font-mono); font-weight: 600; font-size: 0.85rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--amber-ink); }
 .floor p { margin-top: 0.6rem; color: var(--ink); font-size: var(--step-1); line-height: 1.45; font-weight: 560; }
@@ -436,8 +496,12 @@ dialog::backdrop { background: oklch(0.12 0.006 260 / 0.8); }
 .anim-ready .readout { clip-path: inset(0 100% 0 0); transition: clip-path 900ms var(--ease) 120ms; }
 .anim-ready .readout.is-in { clip-path: inset(0 -2% 0 0); }
 
-.anim-ready .floor { opacity: 0; transform: scale(1.02); transition: opacity 450ms var(--ease), transform 450ms var(--ease); }
-.anim-ready .floor.is-in { opacity: 1; transform: none; }
+/* the guarantee lands like a stamp: fast, slightly crooked, final */
+.anim-ready .floor {
+  opacity: 0; transform: scale(1.24) rotate(-1.8deg);
+  transition: opacity 260ms cubic-bezier(0.5, 0, 0.75, 0.4), transform 340ms cubic-bezier(0.3, 1.35, 0.6, 1);
+}
+.anim-ready .floor.is-in { opacity: 1; transform: scale(1) rotate(-0.5deg); }
 
 .anim-ready .record li { opacity: 0; transform: translateY(12px); transition: opacity 550ms var(--ease), transform 550ms var(--ease); }
 .anim-ready .record.is-in li { opacity: 1; transform: none; }
@@ -452,6 +516,23 @@ dialog::backdrop { background: oklch(0.12 0.006 260 / 0.8); }
 .anim-ready .hero h1 { animation: heroRise 750ms var(--ease) backwards; }
 .anim-ready .hero .hero__lede { animation: heroRise 750ms var(--ease) 130ms backwards; }
 .anim-ready .hero .cta { animation: heroRise 750ms var(--ease) 260ms backwards; }
+
+/* the exhibit lands, then the pen goes to work */
+@keyframes billLand { from { opacity: 0; transform: rotate(1.7deg) translateY(22px); } }
+.anim-ready .bill svg { animation: billLand 900ms var(--ease) 350ms backwards; }
+.anim-ready .bill__cap { animation: heroRise 700ms var(--ease) 900ms backwards; }
+@keyframes billDraw { to { stroke-dashoffset: 0; } }
+@keyframes billFade { to { opacity: 1; } }
+.anim-ready .bill .mk[pathLength] {
+  stroke-dasharray: 1; stroke-dashoffset: 1;
+  animation: billDraw 750ms cubic-bezier(0.45, 0, 0.3, 1) forwards;
+  animation-delay: calc(1300ms + var(--d, 0) * 800ms);
+}
+.anim-ready .bill .mk-t {
+  opacity: 0;
+  animation: billFade 420ms var(--ease) forwards;
+  animation-delay: calc(1600ms + var(--d, 0) * 800ms);
+}
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }

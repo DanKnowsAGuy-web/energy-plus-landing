@@ -31,27 +31,73 @@
 
 <main id="main">
 
-  <!-- HERO · one promise, one action -->
+  <!-- HERO · the exhibit: a bill, read the way we read it -->
   <section class="hero" id="top" aria-labelledby="hero-h">
-    <div class="hero__media" aria-hidden="true">
-      <img src="assets/img/hero-building.png" alt="" loading="eager" fetchpriority="high">
-      <div class="hero__scrim"></div>
-    </div>
-    <div class="wrap hero__in">
-      <h1 id="hero-h">Stop paying for wasted energy.</h1>
-      <p class="hero__lede">We find the waste in your commercial building, prove the savings on your own equipment, and install nothing until the number is real.</p>
-      <div class="cta" data-cta>
-        <button type="button" class="btn btn--lg" data-book>Book the 15-minute fit call</button>
-        <button type="button" class="textlink js-sms-toggle" aria-expanded="false">Text Dan directly</button>
-      </div>
-      <div class="sms" role="group" aria-label="Text the founder">
-        <p class="sms__to">To Dan &middot; (864) 777-0688</p>
-        <textarea rows="4" spellcheck="false" aria-label="Message to Dan">Hi Dan, I run a commercial building and I'd like to see what real energy savings could look like at my property, without the sales song and dance. What does it take to qualify?</textarea>
-        <div class="sms__foot">
-          <span class="sms__hint">Opens in your messages, ready to send.</span>
-          <a class="btn btn--sm js-sms-send" href="#" data-phone="+18647770688">Send message</a>
+    <div class="wrap hero__in hero__grid">
+      <div class="hero__copy">
+        <h1 id="hero-h">Stop paying for wasted energy.</h1>
+        <p class="hero__lede">We find the waste in your commercial building, prove the savings on your own equipment, and install nothing until the number is real.</p>
+        <div class="cta" data-cta>
+          <button type="button" class="btn btn--lg" data-book>Book the 15-minute fit call</button>
+          <button type="button" class="textlink js-sms-toggle" aria-expanded="false">Text Dan directly</button>
+        </div>
+        <div class="sms" role="group" aria-label="Text the founder">
+          <p class="sms__to">To Dan &middot; (864) 777-0688</p>
+          <textarea rows="4" spellcheck="false" aria-label="Message to Dan">Hi Dan, I run a commercial building and I'd like to see what real energy savings could look like at my property, without the sales song and dance. What does it take to qualify?</textarea>
+          <div class="sms__foot">
+            <span class="sms__hint">Opens in your messages, ready to send.</span>
+            <a class="btn btn--sm js-sms-send" href="#" data-phone="+18647770688">Send message</a>
+          </div>
         </div>
       </div>
+      <figure class="bill">
+        <svg viewBox="0 0 460 592" role="img" aria-labelledby="bill-t">
+          <title id="bill-t">A typical commercial electric bill, marked up the way we read it: the demand charge is set by your worst 15 minutes of the month, roughly 30% of the energy charge did nothing, and the 15-minute interval detail is what a real quote is built from.</title>
+          <rect class="paper" x="14" y="8" width="432" height="576"/>
+          <text class="bt" x="40" y="56">COMMERCIAL ELECTRIC SERVICE</text>
+          <text class="meta" x="40" y="74">STATEMENT OF ACCOUNT</text>
+          <rect class="tag" x="344" y="40" width="76" height="22"/>
+          <text class="meta" x="382" y="54.5" text-anchor="middle">SPECIMEN</text>
+          <line class="rule" x1="40" y1="92" x2="420" y2="92"/>
+          <text class="meta" x="40" y="114">ACCOUNT &middot;&middot;&middot;&middot;4471</text>
+          <text class="meta" x="240" y="114">RATE SCHEDULE &middot; GS-2</text>
+          <text class="meta" x="40" y="132">PERIOD &middot; JUL 01&ndash;JUL 31</text>
+          <text class="meta" x="240" y="132">METER &middot; 2K-88146</text>
+          <line class="rule" x1="40" y1="150" x2="420" y2="150"/>
+          <text class="row" x="40" y="180">Customer charge</text>
+          <text class="amt" x="420" y="180" text-anchor="end">88.00</text>
+          <text class="row" x="40" y="212">Energy charge &middot; 148,320 kWh</text>
+          <text class="amt" x="420" y="212" text-anchor="end">12,458.88</text>
+          <text class="row" x="40" y="268">Fuel cost adjustment</text>
+          <text class="amt" x="420" y="268" text-anchor="end">1,036.24</text>
+          <text class="row" x="40" y="300">Demand charge &middot; 412 kW</text>
+          <text class="amt" x="420" y="300" text-anchor="end">7,580.80</text>
+          <text class="row" x="40" y="360">Power factor adjustment</text>
+          <text class="amt" x="420" y="360" text-anchor="end">312.40</text>
+          <text class="row" x="40" y="392">Taxes and riders</text>
+          <text class="amt" x="420" y="392" text-anchor="end">1,462.11</text>
+          <line class="rule rule--ink" x1="40" y1="416" x2="420" y2="416"/>
+          <text class="bt" x="40" y="448">TOTAL DUE</text>
+          <text class="amt amt--total" x="420" y="449" text-anchor="end">$22,938.43</text>
+          <line class="rule" x1="40" y1="472" x2="420" y2="472"/>
+          <text class="meta" x="40" y="498">INTERVAL DATA ON FILE &middot; 2,976 READINGS &middot; 15-MIN RESOLUTION</text>
+          <rect class="fine" x="40" y="546" width="340" height="3"/>
+          <rect class="fine" x="40" y="556" width="310" height="3"/>
+          <rect class="fine" x="40" y="566" width="180" height="3"/>
+          <!-- the pen · mark 1: the energy charge -->
+          <path class="mk" pathLength="1" style="--d:0" d="M336 221 C 358 226, 398 223, 423 219"/>
+          <path class="mk" pathLength="1" style="--d:0" d="M196 233 C 248 240, 296 233, 328 224 M328 224 l -8.5 -1.5 M328 224 l -3.5 7.5"/>
+          <text class="mk-t" x="40" y="240" style="--d:0" transform="rotate(-2 40 240)">~30% OF THIS DID NOTHING</text>
+          <!-- mark 2: the demand charge -->
+          <path class="mk" pathLength="1" style="--d:1" d="M352 296 C 350 281, 428 279, 430 294 C 432 310, 353 313, 351 298 C 350 287, 370 283, 392 282"/>
+          <path class="mk" pathLength="1" style="--d:1" d="M282 322 C 310 320, 332 314, 347 306 M347 306 l -8.5 0.5 M347 306 l -4.5 7"/>
+          <text class="mk-t" x="40" y="330" style="--d:1" transform="rotate(-2 40 330)">SET BY YOUR WORST 15 MINUTES OF THE MONTH</text>
+          <!-- mark 3: the interval detail -->
+          <path class="mk" pathLength="1" style="--d:2" d="M230 505 C 258 510, 300 506, 334 503"/>
+          <text class="mk-t" x="230" y="526" style="--d:2" transform="rotate(-1.5 230 526)">THE DETAIL WE QUOTE FROM</text>
+        </svg>
+        <figcaption class="bill__cap">Exhibit A &middot; a commercial bill, read the way we read it. Figures illustrative.<sup class="fn"><a href="#notes" aria-label="See note 1">1</a></sup></figcaption>
+      </figure>
     </div>
   </section>
 
@@ -91,6 +137,39 @@
         </svg>
         <figcaption>Fig. 01 &middot; A dollar of commercial energy, at the EPA's average</figcaption>
       </figure>
+    </div>
+  </section>
+
+  <!-- THE LISTEN TEST · the waste, out loud -->
+  <section class="beat beat--rule" id="listen" aria-labelledby="listen-h">
+    <div class="wrap beat__narrow">
+      <h2 id="listen-h">You can hear it.</h2>
+      <p class="lead">The compressor is the loud hum on your roof, and it eats more than 80% of a cooling unit's electricity. A healthy one cycles: hum, rest, hum, rest. <strong>A saturated one hums straight through, buying electricity that makes nothing colder.</strong></p>
+      <div class="listen">
+        <div class="listen__card" data-card="healthy">
+          <button type="button" class="listen__btn" data-listen="healthy" aria-pressed="false" aria-label="Play the sound of a healthy unit">
+            <svg class="i-play" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"/></svg>
+            <svg class="i-stop" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6.5" y="6.5" width="11" height="11" rx="1"/></svg>
+          </button>
+          <div class="listen__info">
+            <h3>A healthy unit</h3>
+            <p>Hum, rest, hum. The rest is the sound of money staying yours.</p>
+          </div>
+          <div class="listen__meter" aria-hidden="true"></div>
+        </div>
+        <div class="listen__card" data-card="wasteful">
+          <button type="button" class="listen__btn" data-listen="wasteful" aria-pressed="false" aria-label="Play the sound of a unit that never rests">
+            <svg class="i-play" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"/></svg>
+            <svg class="i-stop" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6.5" y="6.5" width="11" height="11" rx="1"/></svg>
+          </button>
+          <div class="listen__info">
+            <h3>A unit paying for nothing</h3>
+            <p>The hum never stops. That's the waste, out loud.</p>
+          </div>
+          <div class="listen__meter" aria-hidden="true"></div>
+        </div>
+      </div>
+      <p class="quiet">Simulated audio, tuned to the pattern, not a recording. The real test costs five minutes standing next to your own unit &mdash; it's on page 2 of the worksheet, further down this page.</p>
     </div>
   </section>
 
@@ -223,7 +302,7 @@
       <p class="lead">How we find the waste, prove it on your own equipment, and install only what pays for itself. <strong>The deep weeds live here, told plainly.</strong></p>
       <div class="film-inline">
         <button type="button" class="film-inline__facade" data-film-inline aria-label="Play the six-minute Energy Plus film">
-          <img src="assets/img/hero-building.png" alt="" loading="lazy">
+          <img src="assets/img/film-cover.jpg" alt="" loading="lazy">
           <span class="film-inline__scrim" aria-hidden="true"></span>
           <span class="film-inline__play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5z"/></svg></span>
           <span class="film-inline__meta" aria-hidden="true">The film &middot; 6 min</span>
@@ -302,8 +381,8 @@
       <h2 id="stakes-h">Waiting isn't neutral.</h2>
       <p class="lead">The same waste that pads the bill runs through your equipment and wears it out years early. <strong>Replacing an aged-out RTU fleet runs $260K to $480K per property.</strong><sup class="fn"><a href="#notes" aria-label="See note 1">1</a></sup> None of that appears on any bill until the day it all does.</p>
       <figure class="plate">
-        <div class="plate__frame"><img src="assets/img/hero-building.png" alt="Aerial survey photograph of a commercial rooftop carrying multiple package HVAC units" loading="lazy"></div>
-        <figcaption>Survey plate 1 &middot; Commercial rooftop HVAC configuration &middot; The equipment doing the paying</figcaption>
+        <div class="plate__frame"><img src="assets/img/stakes-roof.jpg" alt="Illustrative: overhead survey view of an aging commercial roof, oil and rust streaks running from each of its package HVAC units" loading="lazy"></div>
+        <figcaption>Survey plate 1 &middot; An aging fleet, streaking oil &middot; The equipment doing the paying &middot; illustrative</figcaption>
       </figure>
     </div>
   </section>
@@ -319,7 +398,7 @@
   <!-- CLOSE -->
   <section class="close" aria-labelledby="close-h">
     <div class="close__media" aria-hidden="true">
-      <img src="assets/img/hero-building.png" alt="" loading="lazy">
+      <img src="assets/img/close-dusk.jpg" alt="" loading="lazy">
       <div class="hero__scrim"></div>
     </div>
     <div class="wrap close__in">
