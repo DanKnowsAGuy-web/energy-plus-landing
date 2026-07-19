@@ -257,6 +257,62 @@
     sheet.addEventListener("click", (e) => { if (e.target === sheet) sheet.close(); });
   }
 
+  /* ---------- the living ledger: three columns of the record, drifting ---------- */
+  const ledger = document.getElementById("ledger");
+  if (ledger) {
+    const flat = [];
+    RECORD.forEach((g) => g.rows.forEach((r) => flat.push(r)));
+    const cols = Array.from(ledger.querySelectorAll(".ledger__col"));
+    const escL = (s) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+    const card = (r) => '<div class="ledger__card"><span class="r">' + escL(r[0]) + '</span><span class="n">' + escL(r[1]) + '</span><span class="w">' + escL(r[2]) + "</span></div>";
+    cols.forEach((col, i) => {
+      const rows = flat.filter((_, j) => j % cols.length === i);
+      const html = rows.map(card).join("");
+      col.innerHTML = html + html; /* doubled: the -50% drift loops seamlessly */
+    });
+    ledger.addEventListener("click", () => { const b = document.getElementById("record-open"); if (b) b.click(); });
+  }
+
+  /* ---------- selected work: the workfile exhibit, advancing on its own ---------- */
+  const wf = document.querySelector("[data-workfile]");
+  if (wf) {
+    const track = wf.querySelector("[data-wf-track]");
+    const count = track.children.length;
+    const dotsWrap = wf.querySelector("[data-wf-dots]");
+    const nEl = wf.querySelector("[data-wf-n]");
+    const AUTO = 12000, HOLD = 30000;
+    let index = 0, timer = 0, paused = false, inView = false;
+    const arm = (ms) => { clearTimeout(timer); if (reduced || paused || !inView) return; timer = setTimeout(() => go(index + 1, false), ms); };
+    const go = (i, manual) => {
+      index = (i + count) % count;
+      track.style.transform = "translateX(" + (-index * 100) + "%)";
+      Array.from(dotsWrap.children).forEach((d, j) => d.classList.toggle("is-active", j === index));
+      if (nEl) nEl.textContent = String(index + 1);
+      arm(manual ? HOLD : AUTO);
+    };
+    for (let i = 0; i < count; i++) {
+      const b = document.createElement("button");
+      b.type = "button"; b.className = "workfile__dot";
+      b.setAttribute("aria-label", "Go to project " + (i + 1));
+      b.addEventListener("click", () => go(i, true));
+      dotsWrap.appendChild(b);
+    }
+    wf.querySelector("[data-wf-prev]").addEventListener("click", () => go(index - 1, true));
+    wf.querySelector("[data-wf-next]").addEventListener("click", () => go(index + 1, true));
+    wf.addEventListener("mouseenter", () => { paused = true; clearTimeout(timer); });
+    wf.addEventListener("mouseleave", () => { if (!wf.contains(document.activeElement)) { paused = false; arm(AUTO); } });
+    wf.addEventListener("focusin", () => { paused = true; clearTimeout(timer); });
+    wf.addEventListener("focusout", (e) => { if (!wf.contains(e.relatedTarget)) { paused = false; arm(AUTO); } });
+    wf.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowLeft") go(index - 1, true);
+      else if (e.key === "ArrowRight") go(index + 1, true);
+    });
+    if ("IntersectionObserver" in window) {
+      new IntersectionObserver((es) => es.forEach((e) => { inView = e.isIntersecting; if (inView) arm(AUTO); else clearTimeout(timer); }), { threshold: 0.3 }).observe(wf);
+    } else { inView = true; }
+    go(0, false);
+  }
+
   /* ---------- the film: the facade becomes the player, in place ---------- */
   const filmFacade = document.querySelector("[data-film-inline]");
   if (filmFacade) {
